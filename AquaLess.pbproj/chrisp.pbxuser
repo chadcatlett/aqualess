@@ -14,7 +14,7 @@
 			9DA64EF3040C011A00A81664,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 71393905;
+			PBXPerProjectTemplateStateSaveDate = 72086769;
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
@@ -22,7 +22,7 @@
 							Split0 = {
 								NavCount = 1;
 								NavGeometry0 = {
-									Frame = "{{0, 0}, {737, 467}}";
+									Frame = "{{0, 0}, {737, 594}}";
 									NavBarVisible = YES;
 								};
 								NavSplitVertical = NO;
@@ -62,12 +62,10 @@
 						Collapsed = NO;
 						Frame = "{{0, 23}, {1024, 618}}";
 						Split0 = {
-							ActiveTab = 2;
-							ActiveTabName = PBXBuildResultsModule;
 							Collapsed = NO;
 							Frame = "{{287, 0}, {737, 618}}";
 							Split0 = {
-								Frame = "{{0, 151}, {737, 467}}";
+								Frame = "{{0, 24}, {737, 594}}";
 							};
 							SplitCount = 1;
 							Tab0 = {
@@ -189,7 +187,7 @@
 					WindowLocation = "{0, 43}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 71393905;
+			PBXWorkspaceStateSaveDate = 72086769;
 		};
 		projectwideBuildSettings = {
 		};
