@@ -29,7 +29,7 @@
 - (id)initWithFrame:(NSRect)frameRect
 {
   if (self = [super initWithFrame:frameRect]) {
-    // nothing
+    [self setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
   }
   return self;
 }
