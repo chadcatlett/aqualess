@@ -24,6 +24,10 @@
 
 #import "ToolInstaller.h"
 
+static const char *version_id_prefix = "|aless_version_id|";
+static const char version_id_terminator = '|';
+
+static NSString *getVersion(NSString *filePath);
 static int installTool(NSString *bundlePath, NSString *systemPath);
 
 
@@ -65,27 +69,61 @@ void checkAndInstallTool()
                       @"OK", nil, nil);
     }
 
-  } else if (![[NSFileManager defaultManager] contentsEqualAtPath:bundlePath andPath:systemPath]) {
-    // other version
+  } else {
+    NSString *bundleVersion = getVersion(bundlePath);
+    NSString *systemVersion = getVersion(systemPath);
+    if (![systemVersion isEqualToString:bundleVersion]) {
+      // other version
 
-    // ask the user
-    int response =
-    NSRunAlertPanel(@"Command Line Tool Update",
-                    @"The copy of the \"aless\" command line tool on your system is outdated. It is strongly recommended to update it. The process is automatic, but may require an administrator password.",
-                    @"Update", @"Cancel", nil);
-    if (response != NSAlertDefaultReturn)
-      return;
+      // ask the user
+      int response =
+        NSRunAlertPanel(@"Command Line Tool Update",
+                        @"The copy of the \"aless\" command line tool on your system is outdated. It is strongly recommended to update it. The process is automatic, but may require an administrator password.",
+                        @"Update", @"Cancel", nil);
+      if (response != NSAlertDefaultReturn)
+        return;
 
-    // do the installation
-    if (installTool(bundlePath, systemPath) != 0) {
-      NSRunAlertPanel(@"Updating Failed",
-                      @"Updating the command line tool failed. To try again, quit and re-launch AquaLess.",
-                      @"OK", nil, nil);
+      // do the installation
+      if (installTool(bundlePath, systemPath) != 0) {
+        NSRunAlertPanel(@"Updating Failed",
+                        @"Updating the command line tool failed. To try again, quit and re-launch AquaLess.",
+                        @"OK", nil, nil);
+      }
     }
 
   }
 }
 
+
+static NSString *getVersion(NSString *filePath)
+{
+  NSString *version = @"";
+  NSData *fileData = [[NSData alloc] initWithContentsOfFile:filePath];
+
+  const char *data = [fileData bytes];
+  unsigned length = [fileData length];
+  const char *end = data + length;
+  const char *p = data;
+  while (p < end) {
+    p = memchr(p, version_id_prefix[0], end - p);
+    if (p == NULL)
+      break;
+    if (memcmp(p, version_id_prefix, strlen(version_id_prefix)) == 0) {
+      const char *version_id_start = p + strlen(version_id_prefix);
+      if (version_id_start < end) {
+        const char *q = memchr(version_id_start, version_id_terminator, end - version_id_start);
+        if (q != NULL && q < end) {
+          version = [NSString stringWithCString:version_id_start length:(q - version_id_start)];
+          break;
+        }
+      }
+    }
+    p++;
+  }
+
+  [fileData release];
+    return version;
+}
 
 static int installTool(NSString *bundlePath, NSString *systemPath)
 {
