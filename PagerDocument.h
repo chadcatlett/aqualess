@@ -30,6 +30,9 @@
   IBOutlet id scroller;
 
   BOOL isFile;
+  NSFileHandle *fileHandle;
+  unsigned long long lastSize;
+
   NSMutableData *data;
   NSTextStorage *storage;
   NSArray *applicableFormats;
@@ -39,6 +42,12 @@
 // nib loading stuff
 
 - (void)makeWindowControllers;
+
+// file reading
+
+- (void)didReadNextChunk:(NSNotification *)notification;
+- (void)startTailWatch;
+- (void)tailWatchTimeout:(NSTimer *)timer;
 
 // data access
 

@@ -26,7 +26,14 @@
 #import "RawTextInputParser.h"
 #import "HexdumpInputParser.h"
 
+#include <sys/types.h>
+#include <sys/stat.h>
+
 NSString *StatusChangedNotification = @"Pager Status Changed Notification";
+
+
+#define BUFSIZE (8192)
+// identical to the one of aless, lower than CHUNKSIZE of InputParser.m
 
 
 @implementation PagerDocument
@@ -37,6 +44,7 @@ NSString *StatusChangedNotification = @"Pager Status Changed Notification";
   if (self) {
 
     isFile = NO;
+    fileHandle = nil;
 
     data = [[NSMutableData alloc] init];
     if (data == nil) {
@@ -60,6 +68,10 @@ NSString *StatusChangedNotification = @"Pager Status Changed Notification";
 
 - (void)dealloc
 {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  
+  if (fileHandle != nil)
+    [fileHandle release];
   [storage release];
   [data release];
   if (applicableFormats != nil)
@@ -103,6 +115,8 @@ NSString *StatusChangedNotification = @"Pager Status Changed Notification";
   isFile = YES;
 
   // start over completely
+  if (fileHandle != nil)
+    [fileHandle release];
   [[storage mutableString] setString:@""];
   [data setLength:0];
   // even forget detected formats, leading to parser re-creation
@@ -111,12 +125,76 @@ NSString *StatusChangedNotification = @"Pager Status Changed Notification";
     applicableFormats = nil;
   }
 
-  // get the whole file and add it
-  // TODO: instead, use NSFileHandle and async reading in chunks
-  NSData *newData = [NSData dataWithContentsOfFile:fileName];
-  [self addData:newData];
+  // start reading the file
+  fileHandle = [[NSFileHandle fileHandleForReadingAtPath:fileName] retain];
+  if (fileHandle == nil) {
+    // TODO: message the user here?
+    return NO;
+  }
+  NSData *chunk = [fileHandle readDataOfLength:BUFSIZE];
+  [self addData:chunk];
+
+  // arrange for other data to be read asynchronously
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(didReadNextChunk:)
+                                               name:NSFileHandleReadCompletionNotification
+                                             object:fileHandle];
+  [fileHandle readInBackgroundAndNotify];
 
   return YES;
+}
+
+- (void)didReadNextChunk:(NSNotification *)notification
+{
+  if ([notification object] != fileHandle)
+    return;
+
+  NSData *chunk = [[notification userInfo] objectForKey:NSFileHandleNotificationDataItem];
+  if ([chunk length] == 0) {
+    [self startTailWatch];
+  } else {
+    [self addData:chunk];
+    [fileHandle readInBackgroundAndNotify];
+  }
+}
+
+- (void)startTailWatch
+{
+  struct stat sb;
+
+  if (fstat([fileHandle fileDescriptor], &sb) == 0) {
+    lastSize = sb.st_size;
+
+    [NSTimer scheduledTimerWithTimeInterval:1
+                                     target:self
+                                   selector:@selector(tailWatchTimeout:)
+                                   userInfo:nil
+                                    repeats:NO];
+  }
+}
+
+- (void)tailWatchTimeout:(NSTimer *)timer
+{
+  struct stat sb;
+
+  if (fstat([fileHandle fileDescriptor], &sb) == 0) {
+    unsigned long long newSize = sb.st_size;
+
+    if (newSize > lastSize) {
+      // there is new data, read it, continue watching after that
+      [fileHandle readInBackgroundAndNotify];
+    } else if (newSize < lastSize) {
+      // the file got shorter!
+      // TODO: close the file and re-read it from the beginning
+    } else {
+      // nothing changed, try again later
+      [NSTimer scheduledTimerWithTimeInterval:1
+                                       target:self
+                                     selector:@selector(tailWatchTimeout:)
+                                     userInfo:nil
+                                      repeats:NO];
+    }
+  }
 }
 
 // data access
