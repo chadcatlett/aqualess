@@ -43,7 +43,7 @@
 	<key>CFBundleExecutable</key>
 	<string>AquaLess</string>
 	<key>CFBundleGetInfoString</key>
-	<string>1.4, released December xx, 2003</string>
+	<string>1.4, released December 19, 2003</string>
 	<key>CFBundleIconFile</key>
 	<string>scroll.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -55,7 +55,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4</string>
+	<string>Version 1.4</string>
 	<key>CFBundleSignature</key>
 	<string>Lêss</string>
 	<key>NSMainNibFile</key>

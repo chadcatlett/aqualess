@@ -15,9 +15,9 @@
 			sourceTree = "<group>";
 		};
 		089C1660FE840EACC02AAC07 = {
-			expectedFileType = text.plist.strings;
 			fileEncoding = 10;
 			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
 			name = English;
 			path = English.lproj/InfoPlist.strings;
 			refType = 4;
@@ -44,9 +44,9 @@
 			sourceTree = "<group>";
 		};
 		1058C7A7FEA54F5311CA2CBB = {
-			expectedFileType = wrapper.framework;
 			fallbackIsa = PBXFileReference;
 			isa = PBXFrameworkReference;
+			lastKnownFileType = wrapper.framework;
 			name = Cocoa.framework;
 			path = /System/Library/Frameworks/Cocoa.framework;
 			refType = 0;
@@ -170,9 +170,9 @@
 			sourceTree = "<group>";
 		};
 		2A37F4B0FDCFA73011CA2CEA = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = main.m;
 			refType = 4;
 			sourceTree = "<group>";
@@ -188,8 +188,8 @@
 			sourceTree = "<group>";
 		};
 		2A37F4B7FDCFA73011CA2CEA = {
-			expectedFileType = wrapper.nib;
 			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
 			name = English;
 			path = English.lproj/MainMenu.nib;
 			refType = 4;
@@ -225,8 +225,8 @@
 			sourceTree = "<group>";
 		};
 		2A37F4BAFDCFA73011CA2CEA = {
-			expectedFileType = text.rtf;
 			isa = PBXFileReference;
+			lastKnownFileType = text.rtf;
 			name = English;
 			path = English.lproj/Credits.rtf;
 			refType = 4;
@@ -244,18 +244,18 @@
 			sourceTree = "<group>";
 		};
 		2A37F4C4FDCFA73011CA2CEA = {
-			expectedFileType = wrapper.framework;
 			fallbackIsa = PBXFileReference;
 			isa = PBXFrameworkReference;
+			lastKnownFileType = wrapper.framework;
 			name = AppKit.framework;
 			path = /System/Library/Frameworks/AppKit.framework;
 			refType = 0;
 			sourceTree = "<absolute>";
 		};
 		2A37F4C5FDCFA73011CA2CEA = {
-			expectedFileType = wrapper.framework;
 			fallbackIsa = PBXFileReference;
 			isa = PBXFrameworkReference;
+			lastKnownFileType = wrapper.framework;
 			name = Foundation.framework;
 			path = /System/Library/Frameworks/Foundation.framework;
 			refType = 0;
@@ -272,9 +272,9 @@
 //323
 //324
 		32DBCF750370BD2300C91783 = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = AquaLess_Prefix.h;
 			refType = 4;
 			sourceTree = "<group>";
@@ -299,7 +299,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				OPTIMIZATION_CFLAGS = "-O0";
-				ZERO_LINK = YES;
+				ZERO_LINK = NO;
 			};
 			isa = PBXBuildStyle;
 			name = Development;
@@ -328,136 +328,136 @@
 //9D3
 //9D4
 		9D028CDD040FCB7B00A81664 = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 30;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = PagerWindowController.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D028CDE040FCB7B00A81664 = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 30;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = PagerWindowController.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D028CE1040FDF5900A81664 = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = FontHelper.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D028CE2040FDF5900A81664 = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = FontHelper.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D028CF9041284B700A81664 = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = InputParser.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D028CFA041284B700A81664 = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = InputParser.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D028CFD04138A4D00A81664 = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = SmartTextInputParser.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D028CFE04138A4D00A81664 = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = SmartTextInputParser.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D028D010413A78700A81664 = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = HexdumpInputParser.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D028D020413A78700A81664 = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = HexdumpInputParser.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D4C893B0415118000A81664 = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = RawTextInputParser.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D4C893C0415118000A81664 = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = RawTextInputParser.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D5E8A4B040E088400A81664 = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 30;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = PagerTextView.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D5E8A4C040E088400A81664 = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 30;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = PagerTextView.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D6053D60419F91700A81608 = {
-			expectedFileType = image.icns;
 			isa = PBXFileReference;
+			lastKnownFileType = image.icns;
 			path = scroll.icns;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D6B421D042DBD5500F86BBE = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = FindPanelController.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D6B421E042DBD5500F86BBE = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = FindPanelController.m;
 			refType = 4;
 			sourceTree = "<group>";
@@ -473,8 +473,8 @@
 			sourceTree = "<group>";
 		};
 		9D6B4222042DBE5E00F86BBE = {
-			expectedFileType = wrapper.nib;
 			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
 			name = English;
 			path = English.lproj/FindPanel.nib;
 			refType = 4;
@@ -497,57 +497,57 @@
 			sourceTree = "<group>";
 		};
 		9D7C3459040965C200A81664 = {
-			expectedFileType = wrapper.nib;
 			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
 			name = English;
 			path = English.lproj/PagerDocument.nib;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D7C345B040965FC00A81664 = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = PagerDocument.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9D7C345C040965FC00A81664 = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = PagerDocument.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DA64EEB040C00E300A81664 = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = aless.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DA64F07040C091400A81664 = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = AquaLess_Protocol.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DA64F0B040C0D1000A81664 = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 30;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = MyDocumentController.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DA64F0C040C0D1000A81664 = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 30;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = MyDocumentController.h;
 			refType = 4;
 			sourceTree = "<group>";
@@ -573,6 +573,7 @@
 				REZ_EXECUTABLE = YES;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = "-Wmost";
+				ZERO_LINK = NO;
 			};
 			dependencies = (
 			);
@@ -640,7 +641,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9DB8DEA20590C11B0039D27C = {
-			expectedFileType = "compiled.mach-o.executable";
+			explicitFileType = "compiled.mach-o.executable";
 			includeInIndex = 0;
 			isa = PBXFileReference;
 			path = aless;
@@ -1043,14 +1044,14 @@
 			};
 		};
 		9DB8DEDD0590C1370039D27C = {
-			expectedFileType = text.plist;
 			isa = PBXFileReference;
+			lastKnownFileType = text.plist;
 			path = "Info-AquaLess.plist";
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DB8DEDE0590C1370039D27C = {
-			expectedFileType = wrapper.application;
+			explicitFileType = wrapper.application;
 			includeInIndex = 0;
 			isa = PBXFileReference;
 			path = AquaLess.app;
@@ -1088,132 +1089,132 @@
 			sourceTree = "<group>";
 		};
 		9DC53C8E045D6C1500C7B3CF = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			name = AGRegex.h;
 			path = regex/AGRegex.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DC53C8F045D6C1500C7B3CF = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			name = AGRegex.m;
 			path = regex/AGRegex.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DC53C90045D6C1500C7B3CF = {
-			expectedFileType = sourcecode.c.c;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
 			name = chartables.c;
 			path = regex/chartables.c;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DC53C91045D6C1500C7B3CF = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			name = config.h;
 			path = regex/config.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DC53C92045D6C1500C7B3CF = {
-			expectedFileType = sourcecode.c.c;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
 			name = get.c;
 			path = regex/get.c;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DC53C93045D6C1500C7B3CF = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			name = internal.h;
 			path = regex/internal.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DC53C94045D6C1500C7B3CF = {
-			expectedFileType = sourcecode.c.c;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
 			name = maketables.c;
 			path = regex/maketables.c;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DC53C95045D6C1500C7B3CF = {
-			expectedFileType = sourcecode.c.c;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
 			name = pcre.c;
 			path = regex/pcre.c;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DC53C96045D6C1500C7B3CF = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			name = pcre.h;
 			path = regex/pcre.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DC53C97045D6C1500C7B3CF = {
-			expectedFileType = sourcecode.c.c;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
 			name = study.c;
 			path = regex/study.c;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DC8FEA804191F9400A81608 = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = ToolInstaller.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DC8FEA904191F9400A81608 = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = ToolInstaller.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DC8FEAC0419293800A81608 = {
-			expectedFileType = wrapper.framework;
 			fallbackIsa = PBXFileReference;
 			isa = PBXFrameworkReference;
+			lastKnownFileType = wrapper.framework;
 			name = Security.framework;
 			path = /System/Library/Frameworks/Security.framework;
 			refType = 0;
 			sourceTree = "<absolute>";
 		};
 		9DCE8DB50416511200A81608 = {
-			expectedFileType = sourcecode.c.h;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
 			path = ReadmeWindowController.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		9DCE8DB60416511200A81608 = {
-			expectedFileType = sourcecode.c.objc;
 			fileEncoding = 5;
 			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
 			path = ReadmeWindowController.m;
 			refType = 4;
 			sourceTree = "<group>";
@@ -1229,8 +1230,8 @@
 			sourceTree = "<group>";
 		};
 		9DCE8DBA04165DCF00A81608 = {
-			expectedFileType = text.rtf;
 			isa = PBXFileReference;
+			lastKnownFileType = text.rtf;
 			name = English;
 			path = English.lproj/License.rtf;
 			refType = 4;
@@ -1247,8 +1248,8 @@
 			sourceTree = "<group>";
 		};
 		9DCE8DBC04165DCF00A81608 = {
-			expectedFileType = text.rtf;
 			isa = PBXFileReference;
+			lastKnownFileType = text.rtf;
 			name = English;
 			path = English.lproj/ReadMe.rtf;
 			refType = 4;
@@ -1265,8 +1266,8 @@
 			sourceTree = "<group>";
 		};
 		9DCE8DC004165E4900A81608 = {
-			expectedFileType = wrapper.nib;
 			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
 			name = English;
 			path = English.lproj/ReadmeWindow.nib;
 			refType = 4;
