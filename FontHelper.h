@@ -22,7 +22,8 @@
 #define FontStylePlain (1)
 #define FontStyleBold (2)
 #define FontStyleUnderline (3)
-#define FontStyleInverted (4)
+#define FontStyleBoldUnderline (4)
+#define FontStyleInverted (5)
 
 NSSize fontHelperCellSize();
 NSFont *fontHelperFont(int style);

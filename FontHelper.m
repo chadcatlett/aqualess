@@ -28,6 +28,7 @@ static NSFont *boldFont;
 static NSMutableDictionary *normalAttr;
 static NSMutableDictionary *boldAttr;
 static NSMutableDictionary *underlineAttr;
+static NSMutableDictionary *boldUnderlineAttr;
 static NSMutableDictionary *invertedAttr;
 
 static void initFonts()
@@ -67,6 +68,14 @@ static void initFonts()
                     forKey:NSUnderlineStyleAttributeName];
   [underlineAttr setObject:ps forKey:NSParagraphStyleAttributeName];
 
+  boldUnderlineAttr = [[NSMutableDictionary dictionary] retain];
+  [boldUnderlineAttr setObject:boldFont forKey:NSFontAttributeName];
+  if (normalFont == boldFont)  // no separate bold font available, use color instead for now
+    [boldUnderlineAttr setObject:[NSColor blueColor] forKey:NSForegroundColorAttributeName];
+  [boldUnderlineAttr setObject:[NSNumber numberWithInt:NSSingleUnderlineStyle]
+                        forKey:NSUnderlineStyleAttributeName];
+  [boldUnderlineAttr setObject:ps forKey:NSParagraphStyleAttributeName];
+
   invertedAttr = [[NSMutableDictionary dictionary] retain];
   [invertedAttr setObject:normalFont forKey:NSFontAttributeName];
   [invertedAttr setObject:[NSColor whiteColor] forKey:NSForegroundColorAttributeName];
@@ -84,11 +93,6 @@ static void initFonts()
 }
 
 
-#define FontStylePlain (1)
-#define FontStyleBold (2)
-#define FontStyleUnderline (3)
-#define FontStyleInverted (4)
-
 NSSize fontHelperCellSize()
 {
   initFonts();
@@ -102,6 +106,7 @@ NSFont *fontHelperFont(int style)
   switch (style)
   {
   case FontStyleBold:
+  case FontStyleBoldUnderline:
     return boldFont;
   case FontStylePlain:
   case FontStyleUnderline:
@@ -121,6 +126,8 @@ NSDictionary *fontHelperAttr(int style)
     return boldAttr;
   case FontStyleUnderline:
     return underlineAttr;
+  case FontStyleBoldUnderline:
+    return boldUnderlineAttr;
   case FontStyleInverted:
     return invertedAttr;
   case FontStylePlain:

@@ -24,7 +24,7 @@
 #import "FontHelper.h"
 
 
-static NSDictionary *styles[5] = { nil, nil, nil, nil, nil };
+static NSDictionary *styles[6] = { nil, nil, nil, nil, nil, nil };
 
 @implementation SmartTextInputParser
 
@@ -50,11 +50,13 @@ static NSDictionary *styles[5] = { nil, nil, nil, nil, nil };
     styles[1] = fontHelperAttr(FontStylePlain);
     styles[2] = fontHelperAttr(FontStyleBold);
     styles[3] = fontHelperAttr(FontStyleUnderline);
-    styles[4] = fontHelperAttr(FontStyleInverted);
+    styles[4] = fontHelperAttr(FontStyleBoldUnderline);
+    styles[5] = fontHelperAttr(FontStyleInverted);
   }
 
   // parser state
   unsigned offset, state = 0, akkuStyle = 0, lastStyle = 0, x = 0;
+  unsigned terminalStyle = 0, terminalStack[16], terminalCount = 0, terminalCode = 0;
   unichar c, lastC = 0;
   NSMutableString *akku = [NSMutableString string];
 
@@ -68,6 +70,7 @@ static NSDictionary *styles[5] = { nil, nil, nil, nil, nil };
    1: normalAttr
    2: boldAttr
    3: underlineAttr
+   4: boldUnderlineAttr
    [invertedAttr doesn't occur]
   */
 
@@ -90,7 +93,52 @@ static NSDictionary *styles[5] = { nil, nil, nil, nil, nil };
   for (offset = startOffset; offset < endOffset; offset++) {
     c = ((const unsigned char *)[data bytes])[offset];
 
-    if (c == NSBackspaceCharacter) {
+    if (state == 3) {
+      // inside an escape sequence (or after a single escape)
+      if (lastC == 27 && c == '[') {
+        // it's a real escape sequence
+        terminalCode = 0;
+        // state is unchanged
+      } else if (lastC == 27) {
+        // it's just a stray ESC, put it in the output now
+        [self addString:@"ESC" withAttributes:styles[5]];
+        lastStyle = 1;
+        state = 1;
+      } else if (c >= '0' && c <= '9') {
+        terminalCode *= 10;
+        terminalCode += c - '0';
+      } else if (c == ';') {
+        // number separator
+        terminalCode = 0;
+      } else if (c == 'm') {
+        // set attributes
+        if (terminalCode == 0) {
+          // remove last attribute
+          if (terminalCount > 0)
+            terminalStyle = terminalStack[--terminalCount];
+        } else if (terminalCount < 16) {
+          terminalStack[terminalCount++] = terminalStyle;
+          if (terminalCode == 1) {
+            // enable bold
+            if (terminalStyle == 3 || terminalStyle == 4)
+              terminalStyle = 4;
+            else
+              terminalStyle = 2;
+          } else if (terminalCode == 4) {
+            // enable underline
+            if (terminalStyle == 2 || terminalStyle == 4)
+              terminalStyle = 4;
+            else
+              terminalStyle = 3;
+          }
+        }
+        state = 0;
+      } else {
+        state = 0;
+      }
+      lastC = c;
+
+    } else if (c == NSBackspaceCharacter) {
       // backspace, used to denote overstriking
       if (state == 1)
         state = 2;
@@ -101,6 +149,8 @@ static NSDictionary *styles[5] = { nil, nil, nil, nil, nil };
 
       if (state == 1) {
         // commit pending character
+        if (terminalStyle)
+          lastStyle = terminalStyle;
         CommitCharWithStyle(lastC, lastStyle);
       } // NOTE: in state 2, we assume that the backspace removed the pending char
       state = 0;
@@ -130,17 +180,19 @@ static NSDictionary *styles[5] = { nil, nil, nil, nil, nil };
           CommitCharWithStyle(lastC, 1);
           x = 0;
         }
+      } else if (c == 27) {
+        // escape, scan what comes after it
+        CommitFully();
+        state = 3;
       } else {
         // print control char in inverse face
         CommitFully();
-        if (c == 27) {  // escape
-          [self addString:@"ESC" withAttributes:styles[4]];
-        } else if (c < 32) {  // control sequence
+        if (c < 32) {  // control sequence
           [self addString:[NSString stringWithFormat:@"^%c", (int)c ^ 64]
-           withAttributes:styles[4]];
+           withAttributes:styles[5]];
         } else {  // hex
           [self addString:[NSString stringWithFormat:@"<%X>", (int)c]
-           withAttributes:styles[4]];
+           withAttributes:styles[5]];
         }
       }
       lastC = c;
@@ -181,6 +233,8 @@ static NSDictionary *styles[5] = { nil, nil, nil, nil, nil };
 
       } else if (state == 1) {
         // normal case, add lastC to akku, move this one to lastC
+        if (terminalStyle)
+          lastStyle = terminalStyle;
         CommitCharWithStyle(lastC, lastStyle);
         lastStyle = 1;
         lastC = c;
