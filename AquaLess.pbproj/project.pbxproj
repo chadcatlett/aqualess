@@ -308,8 +308,6 @@
 			<array>
 				<string>txt</string>
 				<string>text</string>
-				<string>nfo</string>
-				<string>diz</string>
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>Text File</string>
@@ -342,7 +340,7 @@
 	<key>CFBundleExecutable</key>
 	<string>AquaLess</string>
 	<key>CFBundleGetInfoString</key>
-	<string>1.1, released April xx, 2003</string>
+	<string>1.2, released April xx, 2003</string>
 	<key>CFBundleIconFile</key>
 	<string>scroll.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -354,7 +352,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>CFBundleSignature</key>
 	<string>Lêss</string>
 	<key>NSMainNibFile</key>
