@@ -25,6 +25,22 @@
 
 @implementation PagerTextView
 
+
+- (id)initWithFrame:(NSRect)frameRect
+{
+  if (self = [super initWithFrame:frameRect]) {
+    // nothing
+  }
+  return self;
+}
+
+- (void)dealloc
+{
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+  [super dealloc];
+}
+
 // keyboard handling
 
 - (void)keyDown:(NSEvent *)theEvent
@@ -83,6 +99,9 @@
     case 'G':
     case '>':
       [self scrollPoint:NSMakePoint(0, [self bounds].size.height)];
+      break;
+    case 'F':
+      [self startTailLock:self];
       break;
     case 'q':
       [[self window] performClose:self];
@@ -169,6 +188,53 @@
   int lineHeight = [scrollView verticalLineScroll];
   int linesPerPage = [clipView bounds].size.height / lineHeight - 1;
   [self scrollBy:NSMakePoint(0, floor(pages * linesPerPage + 0.5) * lineHeight)];
+}
+
+// tail lock
+
+- (IBAction)startTailLock:(id)sender
+{
+  // scroll down all the way
+  [self scrollPoint:NSMakePoint(0, [self bounds].size.height)];
+
+  // remember this for future text changes
+  tailLock = YES;
+
+  // remember scroll position to detect changes that end tail-lock mode
+  NSScrollView *scrollView = [self enclosingScrollView];
+  if (scrollView != nil) {
+    NSClipView *clipView = [scrollView contentView];
+    tailLastPosition = [clipView bounds].origin.y;
+    //NSLog(@"first remembered position: %.0f", tailLastPosition);
+  } else {
+    //NSLog(@"Can't get scroll view");
+    tailLock = NO;
+  }
+}
+
+- (void)textAppended:(NSNotification *)notification;
+{
+  if (!tailLock) {
+    //NSLog(@"textAppended: tail lock not engaged");
+    return;
+  }
+
+  NSScrollView *scrollView = [self enclosingScrollView];
+  if (scrollView != nil) {
+    NSClipView *clipView = [scrollView contentView];
+    float currentPosition = [clipView bounds].origin.y;
+    if (currentPosition != tailLastPosition) {
+      //NSLog(@"mismatch: remembered %.0f, now have %.0f", tailLastPosition, currentPosition);
+      tailLock = NO;
+    } else {
+      [self scrollPoint:NSMakePoint(0, [self bounds].size.height)];
+      tailLastPosition = [clipView bounds].origin.y;
+      //NSLog(@"new remembered position: %.0f", tailLastPosition);
+    }
+  } else {
+    //NSLog(@"Can't get scroll view");
+    tailLock = NO;
+  }
 }
 
 // determine the visible range of characters

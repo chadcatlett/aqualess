@@ -100,6 +100,13 @@
                                                name:StatusChangedNotification
                                              object:[self document]];
 
+  // set up notifications for tail lock
+  [[NSNotificationCenter defaultCenter] addObserver:display
+                                           selector:@selector(textAppended:)
+                                               name:NSViewFrameDidChangeNotification
+                                             object:display];
+  [display setPostsFrameChangedNotifications:YES];
+
   // update the status line
   [self updateStatus:nil];
 

@@ -23,11 +23,18 @@
 
 @interface PagerTextView : NSTextView
 {
+  BOOL tailLock;
+  float tailLastPosition;
 }
+
+- (id)initWithFrame:(NSRect)frameRect;   // designated initializer
 
 - (void)scrollBy:(NSPoint)offset;
 - (void)scrollLines:(int)lines;
 - (void)scrollPages:(float)pages;
+
+- (IBAction)startTailLock:(id)sender;
+- (void)textAppended:(NSNotification *)notification;
 
 - (NSRange)visibleRange;
 
