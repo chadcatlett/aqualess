@@ -29,4 +29,6 @@
 - (void)scrollLines:(int)lines;
 - (void)scrollPages:(float)pages;
 
+- (NSRange)visibleRange;
+
 @end

@@ -24,6 +24,21 @@
 @class FindPanelController;
 
 
+#define SearchDirectionMask 0x0003
+#define SearchDirectionForwards 0x0000
+#define SearchDirectionBackwards 0x0001
+#define SearchDirectionSame 0x0002
+#define SearchDirectionOther 0x0003
+
+#define SearchCaseMask 0x0004
+#define SearchCaseSensitive 0x0000
+#define SearchCaseInsensitive 0x0004
+
+#define SearchRegexpMask 0x0008
+#define SearchRegexpDisabled 0x0000
+#define SearchRegexpEnabled 0x0008
+
+
 @interface PagerWindowController : NSWindowController
 {
   IBOutlet id display;
@@ -34,7 +49,7 @@
   FindPanelController *findPanel;
 
   NSString *lastPattern;
-  BOOL lastDirection;
+  int lastFlags;
 }
 
 - (NSTextStorage *)storage;
@@ -46,13 +61,15 @@
 - (FindPanelController *)findPanel;
 
 - (IBAction)showFindPanel:(id)sender;
+- (void)showFindPanelBackwards:(BOOL)back;
+
 - (IBAction)findAgainForwards:(id)sender;
 - (IBAction)findAgainBackwards:(id)sender;
 - (IBAction)findAgainSameDirection:(id)sender;
 - (IBAction)findAgainOtherDirection:(id)sender;
 
-- (void)findPanelDidEndWithPattern:(NSString *)pattern direction:(BOOL)back;
+- (void)findPanelDidEndWithPattern:(NSString *)pattern flags:(int)flags;
 
-- (void)findPattern:(NSString *)pattern direction:(BOOL)back;
+- (void)findPattern:(NSString *)pattern flags:(int)flags;
 
 @end

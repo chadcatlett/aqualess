@@ -4,7 +4,12 @@
             ACTIONS = {dismissCancel = id; dismissOk = id; }; 
             CLASS = FindPanelController; 
             LANGUAGE = ObjC; 
-            OUTLETS = {directionControl = id; patternControl = id; }; 
+            OUTLETS = {
+                backwardsControl = id; 
+                caseControl = id; 
+                forwardsControl = id; 
+                patternControl = id; 
+            }; 
             SUPERCLASS = NSWindowController; 
         }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }

@@ -27,7 +27,9 @@
 @interface FindPanelController : NSWindowController
 {
   IBOutlet id patternControl;
-  IBOutlet id directionControl;
+  IBOutlet id forwardsControl;
+  IBOutlet id backwardsControl;
+  IBOutlet id caseControl;
 
   PagerWindowController *parentController;
 }
@@ -35,6 +37,7 @@
 - (id)initWithController:(PagerWindowController *)winC;
 
 - (void)runOnWindow:(NSWindow *)parentWindow;
+- (void)setDirection:(BOOL)backwards;
 
 - (IBAction)dismissOk:(id)sender;
 - (IBAction)dismissCancel:(id)sender;

@@ -52,6 +52,11 @@
       [self scrollLines:-1];
       break;
     case 32:
+      if ([theEvent modifierFlags] & NSShiftKeyMask)
+        [self scrollPages:-1];
+      else
+        [self scrollPages:1];
+      break;
     case NSPageDownFunctionKey:
     case 'f':
     case 'z':
@@ -83,7 +88,10 @@
       [[self window] performClose:self];
       break;
     case '/':
-      [[[self window] delegate] showFindPanel:self];
+      [[[self window] delegate] showFindPanelBackwards:NO];
+      break;
+    case '?':
+      [[[self window] delegate] showFindPanelBackwards:YES];
       break;
     case 'n':
       [[[self window] delegate] findAgainSameDirection:self];
@@ -100,6 +108,8 @@
   if (!handled)
     [super keyDown:theEvent];
 }
+
+// relative scrolling
 
 - (void)scrollBy:(NSPoint)offset
 {
@@ -118,6 +128,15 @@
   [clipView scrollToPoint:scrollTo];
   [scrollView reflectScrolledClipView:clipView];
 }
+/* from iTerm:
+
+ NSRect scrollRect;
+
+ scrollRect= [self visibleRect];
+ scrollRect.origin.y-=[[self enclosingScrollView] verticalLineScroll];
+ //NSLog(@"%f/%f",[[self enclosingScrollView] verticalLineScroll],[[self enclosingScrollView] verticalPageScroll]);
+ [self scrollRectToVisible: scrollRect];
+*/
 
 - (void)scrollLines:(int)lines
 {
@@ -138,6 +157,29 @@
   int lineHeight = [scrollView verticalLineScroll];
   int linesPerPage = [clipView bounds].size.height / lineHeight - 1;
   [self scrollBy:NSMakePoint(0, floor(pages * linesPerPage + 0.5) * lineHeight)];
+}
+
+// determine the visible range of characters
+
+- (NSRange)visibleRange
+{
+  NSRange visibleGlyphRange, visibleCharRange;
+  NSLayoutManager *layoutManager = [self layoutManager];
+  NSTextContainer *textContainer = [self textContainer];
+  NSPoint containerOrigin = [self textContainerOrigin];
+  NSRect visibleRect = [self visibleRect];
+
+  // convert from view coordinates to container coordinates
+  visibleRect.origin.x -= containerOrigin.x;
+  visibleRect.origin.y -= containerOrigin.y;
+  // don't count barely visible lines
+  visibleRect.origin.y += 4;
+  visibleRect.size.height -= 8;
+
+  visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:visibleRect inTextContainer:textContainer];
+  visibleCharRange = [layoutManager characterRangeForGlyphRange:visibleGlyphRange actualGlyphRange:NULL];
+
+  return visibleCharRange;
 }
 
 @end

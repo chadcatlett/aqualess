@@ -36,6 +36,7 @@
     [self setShouldCloseDocument:YES];
     findPanel = nil;
     lastPattern = nil;
+    lastFlags = 0;
   }
   return self;
 }
@@ -159,7 +160,12 @@
 {
   [[self findPanel] runOnWindow:[self window]];
 }
-// TODO: variants of this specifying the search direction
+
+- (void)showFindPanelBackwards:(BOOL)back
+{
+  [[self findPanel] setDirection:back];
+  [[self findPanel] runOnWindow:[self window]];
+}
 
 - (IBAction)findAgainForwards:(id)sender
 {
@@ -168,8 +174,10 @@
     return;
   }
 
-  lastDirection = NO;
-  [self findPattern:lastPattern direction:lastDirection];
+  int flags = lastFlags & ~SearchDirectionMask;
+  flags |= SearchDirectionForwards;
+  lastFlags = flags;
+  [self findPattern:lastPattern flags:flags];
 }
 
 - (IBAction)findAgainBackwards:(id)sender
@@ -179,8 +187,10 @@
     return;
   }
 
-  lastDirection = YES;
-  [self findPattern:lastPattern direction:lastDirection];
+  int flags = lastFlags & ~SearchDirectionMask;
+  flags |= SearchDirectionBackwards;
+  lastFlags = flags;
+  [self findPattern:lastPattern flags:flags];
 }
 
 - (IBAction)findAgainSameDirection:(id)sender
@@ -190,7 +200,8 @@
     return;
   }
 
-  [self findPattern:lastPattern direction:lastDirection];
+  int flags = lastFlags;
+  [self findPattern:lastPattern flags:flags];
 }
 
 - (IBAction)findAgainOtherDirection:(id)sender
@@ -200,50 +211,71 @@
     return;
   }
 
-  [self findPattern:lastPattern direction:!lastDirection];
+  int flags = lastFlags & ~SearchDirectionMask;
+  if ((lastFlags & SearchDirectionMask) == SearchDirectionForwards)
+    flags |= SearchDirectionBackwards;
+  else
+    flags |= SearchDirectionForwards;
+  [self findPattern:lastPattern flags:flags];
 }
 
-- (void)findPanelDidEndWithPattern:(NSString *)pattern direction:(BOOL)back
+- (void)findPanelDidEndWithPattern:(NSString *)pattern flags:(int)flags
 {
   if (lastPattern != nil)
     [lastPattern autorelease];
   lastPattern = [pattern retain];
-  lastDirection = back;
+  lastFlags = flags;
 
-  [self findPattern:lastPattern direction:lastDirection];
+  [self findPattern:lastPattern flags:flags];
 }
 
 // low-level search
 
-- (void)findPattern:(NSString *)pattern direction:(BOOL)back
+- (void)findPattern:(NSString *)pattern flags:(int)flags
 {
   NSString *haystack = [[self storage] mutableString];
-  unsigned options = NSCaseInsensitiveSearch;
   NSRange searchRange, range;
-  NSRange selectedRange = [display selectedRange];
+  NSRange startRange = [display selectedRange];
 
-  if (!back) {
-    if (selectedRange.length == 0)
-      searchRange.location = 0;
+  // find options for the NSString search
+  unsigned options = 0;
+  if ((flags & SearchCaseMask) == SearchCaseInsensitive)
+    options |= NSCaseInsensitiveSearch;
+
+  BOOL inclusive = NO;
+  if (startRange.length == 0) {
+    startRange = [display visibleRange];
+    inclusive = YES;
+  }
+
+  // TODO: support patterns
+
+  if ((flags & SearchDirectionMask) == SearchDirectionForwards) {
+    // forwards
+    if (inclusive)
+      searchRange.location = startRange.location;
     else
-      searchRange.location = NSMaxRange(selectedRange);
+      searchRange.location = NSMaxRange(startRange);
     searchRange.length = [haystack length] - searchRange.location;
     range = [haystack rangeOfString:pattern options:options range:searchRange];
   } else {
+    // backwards
     options |= NSBackwardsSearch;
     searchRange.location = 0;
-    if (selectedRange.length == 0)
-      searchRange.length = [haystack length];
+    if (inclusive)
+      searchRange.length = NSMaxRange(startRange);
     else
-      searchRange.length = selectedRange.location;
+      searchRange.length = startRange.location;
     range = [haystack rangeOfString:pattern options:options range:searchRange];
   }
 
   if (range.length) {
+    // match found
     [display setSelectedRange:range];
     [display scrollRangeToVisible:range];
     [self updateStatus:nil];
   } else {
+    // no match found
     NSBeep();
     [status setStringValue:@"Pattern not found."];
   }

@@ -65,6 +65,15 @@
         contextInfo:nil];
 }
 
+- (void)setDirection:(BOOL)backwards
+{
+  if (backwards) {
+    [backwardsControl performClick:self];
+  } else {
+    [forwardsControl performClick:self];
+  }
+}
+
 // sheet termination
 
 - (void)findDidEnd:(NSWindow *)sheet
@@ -76,12 +85,17 @@
   if (returnCode == NSOKButton) {
     NSString *pattern = [patternControl stringValue];
 
-    /*
-    NSString *iText = [textControl stringValue];
-    NSDecimalNumber *iNetto = [nettoControl objectValue];
-    */
+    int flags = 0;
+    if ([backwardsControl intValue])
+      flags |= SearchDirectionBackwards;
+    else
+      flags |= SearchDirectionForwards;
+    if ([caseControl intValue])
+      flags |= SearchCaseInsensitive;
+    else
+      flags |= SearchCaseSensitive;
 
-    [parentController findPanelDidEndWithPattern:pattern direction:NO];
+    [parentController findPanelDidEndWithPattern:pattern flags:flags];
   }
 }
 
