@@ -33,8 +33,22 @@ NSDistantObject <AquaLess> *appProxy = nil;
 
 void usage()
 {
-  fprintf(stderr, "Usage: <command> | %s\n", progname);
-  fprintf(stderr, "       %s <file>...\n", progname);
+  fprintf(stderr,
+          "Usage: <command> | %s\n"
+          "       %s <file>...\n"
+          "Options: -h   Display this usage message\n"
+          "         -v   Display version information\n"
+          , progname, progname);
+  exitcode = 1;
+}
+
+void version()
+{
+  fprintf(stderr,
+          "aless 1.1, the AquaLess command line tool\n"
+          "Copyright (c) 2003 Christoph Pfisterer.\n"
+          "Visit http://aqualess.sourceforge.net/ for more information.\n"
+          );
   exitcode = 1;
 }
 
@@ -110,22 +124,30 @@ void doPipe()
   }
 }
 
-int main(int argc, const char *argv[])
+void objc_main(int argc, char * const *argv)
 {
-  // get program name (for future extension)
-  progname = rindex(argv[0], '/');
-  if (progname)
-    progname++;
-  else
-    progname = argv[0];
+  // parse command line: options
+  int c;
+  while (!exitcode && (c = getopt(argc, argv, "hv")) != -1) {
+    switch (c) {
+      case 'h':
+        usage();
+        break;
+      case 'v':
+        version();
+        break;
+      default:
+        usage();
+        break;
+    }
+  }
+  if (exitcode)
+    return;
 
-  // entering ObjC land, wrap with an auto-release pool
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
-  // parse command line
+  // parse command line: file names
   int i;
   NSMutableArray *files = [NSMutableArray array];
-  for (i = 1; i < argc; i++) {
+  for (i = optind; i < argc; i++) {
     NSString *spec = [NSString stringWithCString:argv[i]];
     if (![spec isAbsolutePath]) {
       spec = [[[NSFileManager defaultManager]
@@ -134,10 +156,11 @@ int main(int argc, const char *argv[])
     [files addObject:spec];
   }
 
+  // actual processing
   if ([files count] > 0) {
     // we were invoked with some files
     connectToApp();
-    if (exitcode == 0)
+    if (!exitcode)
       openFiles(files);
 
   } else {
@@ -145,12 +168,25 @@ int main(int argc, const char *argv[])
     if (isatty(0))  // don't read from a terminal, only redirections
       usage();
 
-    if (exitcode == 0)
+    if (!exitcode)
       connectToApp();
-    if (exitcode == 0)
+    if (!exitcode)
       doPipe();
   }
+}
 
+int main(int argc, char * const *argv)
+{
+  // get program name (for future extension)
+  progname = strrchr(argv[0], '/');
+  if (progname)
+    progname++;
+  else
+    progname = argv[0];
+
+  // entering ObjC land, wrap with an auto-release pool
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+  objc_main(argc, argv);
   [pool release];
   return exitcode;
 }
