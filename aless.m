@@ -45,7 +45,7 @@ void usage()
 void version()
 {
   fprintf(stderr,
-          "aless 1.1, the AquaLess command line tool\n"
+          "aless 1.2, the AquaLess command line tool\n"
           "Copyright (c) 2003 Christoph Pfisterer.\n"
           "Visit http://aqualess.sourceforge.net/ for more information.\n"
           );
