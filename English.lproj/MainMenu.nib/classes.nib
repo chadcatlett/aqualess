@@ -1,7 +1,13 @@
 {
     IBClasses = (
         {
-            ACTIONS = {showFindPanel = id; showLicense = id; showReadme = id; }; 
+            ACTIONS = {
+                findAgainBackwards = id; 
+                findAgainForwards = id; 
+                showFindPanel = id; 
+                showLicense = id; 
+                showReadme = id; 
+            }; 
             CLASS = FirstResponder; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSObject; 
