@@ -35,6 +35,7 @@
   if (self = [super initWithWindowNibName:@"PagerDocument"]) {
     [self setShouldCloseDocument:YES];
     findPanel = nil;
+    lastPattern = nil;
   }
   return self;
 }
@@ -45,6 +46,8 @@
 
   if (findPanel != nil)
     [findPanel release];
+  if (lastPattern != nil)
+    [lastPattern release];
 
   [super dealloc];
 }
@@ -144,22 +147,106 @@
 
 // find panel actions
 
-- (IBAction)showFindPanel:(id)sender
+- (FindPanelController *)findPanel;
 {
   if (findPanel == nil) {
     findPanel = [[FindPanelController alloc] initWithController:self];
   }
+  return findPanel;
+}
 
-  [findPanel runOnWindow:[self window]];
+- (IBAction)showFindPanel:(id)sender
+{
+  [[self findPanel] runOnWindow:[self window]];
+}
+// TODO: variants of this specifying the search direction
+
+- (IBAction)findAgainForwards:(id)sender
+{
+  if (lastPattern == nil || [lastPattern length] == 0) {
+    NSBeep();
+    return;
+  }
+
+  lastDirection = NO;
+  [self findPattern:lastPattern direction:lastDirection];
+}
+
+- (IBAction)findAgainBackwards:(id)sender
+{
+  if (lastPattern == nil || [lastPattern length] == 0) {
+    NSBeep();
+    return;
+  }
+
+  lastDirection = YES;
+  [self findPattern:lastPattern direction:lastDirection];
+}
+
+- (IBAction)findAgainSameDirection:(id)sender
+{
+  if (lastPattern == nil || [lastPattern length] == 0) {
+    NSBeep();
+    return;
+  }
+
+  [self findPattern:lastPattern direction:lastDirection];
+}
+
+- (IBAction)findAgainOtherDirection:(id)sender
+{
+  if (lastPattern == nil || [lastPattern length] == 0) {
+    NSBeep();
+    return;
+  }
+
+  [self findPattern:lastPattern direction:!lastDirection];
+}
+
+- (void)findPanelDidEndWithPattern:(NSString *)pattern direction:(BOOL)back
+{
+  if (lastPattern != nil)
+    [lastPattern autorelease];
+  lastPattern = [pattern retain];
+  lastDirection = back;
+
+  [self findPattern:lastPattern direction:lastDirection];
 }
 
 // low-level search
 
-- (void)findPattern:(NSString *)pattern fromPosition:(int)position backwards:(BOOL)back
+- (void)findPattern:(NSString *)pattern direction:(BOOL)back
 {
-  NSBeep();
+  NSString *haystack = [[self storage] mutableString];
+  unsigned options = NSCaseInsensitiveSearch;
+  NSRange searchRange, range;
+  NSRange selectedRange = [display selectedRange];
 
-  [status setStringValue:@"Pattern not found."];
+  if (!back) {
+    if (selectedRange.length == 0)
+      searchRange.location = 0;
+    else
+      searchRange.location = NSMaxRange(selectedRange);
+    searchRange.length = [haystack length] - searchRange.location;
+    range = [haystack rangeOfString:pattern options:options range:searchRange];
+  } else {
+    options |= NSBackwardsSearch;
+    searchRange.location = 0;
+    if (selectedRange.length == 0)
+      searchRange.length = [haystack length];
+    else
+      searchRange.length = selectedRange.location;
+    range = [haystack rangeOfString:pattern options:options range:searchRange];
+  }
+
+  if (range.length) {
+    [display setSelectedRange:range];
+    [display scrollRangeToVisible:range];
+    [self updateStatus:nil];
+  } else {
+    NSBeep();
+    [status setStringValue:@"Pattern not found."];
+  }
 }
 
 @end

@@ -71,19 +71,18 @@
         returnCode:(int)returnCode
        contextInfo:(void *)contextInfo
 {
+  [sheet orderOut:self];
+
   if (returnCode == NSOKButton) {
     NSString *pattern = [patternControl stringValue];
 
-    NSLog(@"pattern: '%@'", pattern);
     /*
     NSString *iText = [textControl stringValue];
     NSDecimalNumber *iNetto = [nettoControl objectValue];
     */
 
-    [parentController findPattern:pattern fromPosition:0 backwards:NO];
+    [parentController findPanelDidEndWithPattern:pattern direction:NO];
   }
-
-  [sheet orderOut:self];
 }
 
 @end

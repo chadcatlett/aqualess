@@ -32,6 +32,9 @@
   IBOutlet id formatPopup;
 
   FindPanelController *findPanel;
+
+  NSString *lastPattern;
+  BOOL lastDirection;
 }
 
 - (NSTextStorage *)storage;
@@ -40,8 +43,16 @@
 
 - (IBAction)changeFormat:(id)sender;
 
-- (IBAction)showFindPanel:(id)sender;
+- (FindPanelController *)findPanel;
 
-- (void)findPattern:(NSString *)pattern fromPosition:(int)position backwards:(BOOL)back;
+- (IBAction)showFindPanel:(id)sender;
+- (IBAction)findAgainForwards:(id)sender;
+- (IBAction)findAgainBackwards:(id)sender;
+- (IBAction)findAgainSameDirection:(id)sender;
+- (IBAction)findAgainOtherDirection:(id)sender;
+
+- (void)findPanelDidEndWithPattern:(NSString *)pattern direction:(BOOL)back;
+
+- (void)findPattern:(NSString *)pattern direction:(BOOL)back;
 
 @end

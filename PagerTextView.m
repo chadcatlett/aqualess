@@ -85,6 +85,12 @@
     case '/':
       [[[self window] delegate] showFindPanel:self];
       break;
+    case 'n':
+      [[[self window] delegate] findAgainSameDirection:self];
+      break;
+    case 'N':
+      [[[self window] delegate] findAgainOtherDirection:self];
+      break;
     default:
       handled = NO;
       break;
