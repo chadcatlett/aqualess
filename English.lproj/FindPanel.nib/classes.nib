@@ -9,6 +9,7 @@
                 caseControl = id; 
                 forwardsControl = id; 
                 patternControl = id; 
+                regexControl = id; 
             }; 
             SUPERCLASS = NSWindowController; 
         }, 

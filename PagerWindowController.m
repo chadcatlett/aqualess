@@ -24,6 +24,10 @@
 #import "PagerTextView.h"
 #import "FindPanelController.h"
 #import "FontHelper.h"
+#import "AGRegex.h"
+
+
+#define DropPatternMask SearchCaseMask
 
 
 @implementation PagerWindowController
@@ -36,6 +40,7 @@
     [self setShouldCloseDocument:YES];
     findPanel = nil;
     lastPattern = nil;
+    lastRegex = nil;
     lastFlags = 0;
   }
   return self;
@@ -49,6 +54,8 @@
     [findPanel release];
   if (lastPattern != nil)
     [lastPattern release];
+  if (lastRegex != nil)
+    [lastRegex release];
 
   [super dealloc];
 }
@@ -184,7 +191,7 @@
   int flags = lastFlags & ~SearchDirectionMask;
   flags |= SearchDirectionForwards;
   lastFlags = flags;
-  [self findPattern:lastPattern flags:flags];
+  [self findPatternWithFlags:flags];
 }
 
 - (IBAction)findAgainBackwards:(id)sender
@@ -197,7 +204,7 @@
   int flags = lastFlags & ~SearchDirectionMask;
   flags |= SearchDirectionBackwards;
   lastFlags = flags;
-  [self findPattern:lastPattern flags:flags];
+  [self findPatternWithFlags:flags];
 }
 
 - (IBAction)findAgainSameDirection:(id)sender
@@ -208,7 +215,7 @@
   }
 
   int flags = lastFlags;
-  [self findPattern:lastPattern flags:flags];
+  [self findPatternWithFlags:flags];
 }
 
 - (IBAction)findAgainOtherDirection:(id)sender
@@ -223,39 +230,58 @@
     flags |= SearchDirectionBackwards;
   else
     flags |= SearchDirectionForwards;
-  [self findPattern:lastPattern flags:flags];
+  [self findPatternWithFlags:flags];
 }
 
 - (void)findPanelDidEndWithPattern:(NSString *)pattern flags:(int)flags
 {
-  if (lastPattern != nil)
+  if (lastPattern != nil) {
+    if ((![lastPattern isEqualToString:pattern]
+         || (flags & DropPatternMask) != (lastFlags & DropPatternMask))
+        && lastRegex != nil) {
+      // pattern string (or case option) has changed, release cached regex object
+      [lastRegex autorelease];
+      lastRegex = nil;
+    }
     [lastPattern autorelease];
+  }
   lastPattern = [pattern retain];
   lastFlags = flags;
 
-  [self findPattern:lastPattern flags:flags];
+  [self findPatternWithFlags:flags];
 }
 
 // low-level search
 
-- (void)findPattern:(NSString *)pattern flags:(int)flags
+- (void)findPatternWithFlags:(int)flags
 {
+  NSString *pattern = lastPattern;
   NSString *haystack = [[self storage] mutableString];
   NSRange searchRange, range;
   NSRange startRange = [display selectedRange];
 
-  // find options for the NSString search
+  // find options
   unsigned options = 0;
-  if ((flags & SearchCaseMask) == SearchCaseInsensitive)
-    options |= NSCaseInsensitiveSearch;
+  if ((flags & SearchRegexMask) == SearchRegexEnabled) {
+    // find options for the AGRegex search
+    if ((flags & SearchCaseMask) == SearchCaseInsensitive)
+      options |= AGRegexCaseInsensitive;
+
+    // create the pattern if necessary
+    if (lastRegex == nil) {
+      lastRegex = [[AGRegex alloc] initWithPattern:pattern options:options];
+    }
+  } else {
+    // find options for the NSString search
+    if ((flags & SearchCaseMask) == SearchCaseInsensitive)
+      options |= NSCaseInsensitiveSearch;
+  }
 
   BOOL inclusive = NO;
   if (startRange.length == 0) {
     startRange = [display visibleRange];
     inclusive = YES;
   }
-
-  // TODO: support patterns
 
   if ((flags & SearchDirectionMask) == SearchDirectionForwards) {
     // forwards
@@ -264,16 +290,35 @@
     else
       searchRange.location = NSMaxRange(startRange);
     searchRange.length = [haystack length] - searchRange.location;
-    range = [haystack rangeOfString:pattern options:options range:searchRange];
+
+    if ((flags & SearchRegexMask) == SearchRegexEnabled) {
+      AGRegexMatch *match = [lastRegex findInString:haystack range:searchRange];
+      if (match != nil)
+        range = [match range];
+      else
+        range.length = 0;
+    } else {
+      range = [haystack rangeOfString:pattern options:options range:searchRange];
+    }
+
   } else {
     // backwards
-    options |= NSBackwardsSearch;
     searchRange.location = 0;
     if (inclusive)
       searchRange.length = NSMaxRange(startRange);
     else
       searchRange.length = startRange.location;
-    range = [haystack rangeOfString:pattern options:options range:searchRange];
+
+    if ((flags & SearchRegexMask) == SearchRegexEnabled) {
+      NSArray *matchlist = [lastRegex findAllInString:haystack range:searchRange];
+      if ([matchlist count])
+        range = [[matchlist objectAtIndex:[matchlist count] - 1] range];
+      else
+        range.length = 0;
+    } else {
+      options |= NSBackwardsSearch;
+      range = [haystack rangeOfString:pattern options:options range:searchRange];
+    }
   }
 
   if (range.length) {

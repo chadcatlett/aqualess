@@ -22,6 +22,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class FindPanelController;
+@class AGRegex;
 
 
 #define SearchDirectionMask 0x0003
@@ -34,9 +35,9 @@
 #define SearchCaseSensitive 0x0000
 #define SearchCaseInsensitive 0x0004
 
-#define SearchRegexpMask 0x0008
-#define SearchRegexpDisabled 0x0000
-#define SearchRegexpEnabled 0x0008
+#define SearchRegexMask 0x0008
+#define SearchRegexDisabled 0x0000
+#define SearchRegexEnabled 0x0008
 
 
 @interface PagerWindowController : NSWindowController
@@ -49,6 +50,7 @@
   FindPanelController *findPanel;
 
   NSString *lastPattern;
+  AGRegex *lastRegex;
   int lastFlags;
 }
 
@@ -70,6 +72,6 @@
 
 - (void)findPanelDidEndWithPattern:(NSString *)pattern flags:(int)flags;
 
-- (void)findPattern:(NSString *)pattern flags:(int)flags;
+- (void)findPatternWithFlags:(int)flags;
 
 @end

@@ -94,6 +94,10 @@
       flags |= SearchCaseInsensitive;
     else
       flags |= SearchCaseSensitive;
+    if ([regexControl intValue])
+      flags |= SearchRegexEnabled;
+    else
+      flags |= SearchRegexDisabled;
 
     [parentController findPanelDidEndWithPattern:pattern flags:flags];
   }

@@ -30,6 +30,7 @@
   IBOutlet id forwardsControl;
   IBOutlet id backwardsControl;
   IBOutlet id caseControl;
+  IBOutlet id regexControl;
 
   PagerWindowController *parentController;
 }

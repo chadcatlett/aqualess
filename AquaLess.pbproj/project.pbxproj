@@ -140,6 +140,7 @@
 			children = (
 				2A37F4ABFDCFA73011CA2CEA,
 				2A37F4AFFDCFA73011CA2CEA,
+				9DC53C8D045D6BEA00C7B3CF,
 				2A37F4B8FDCFA73011CA2CEA,
 				2A37F4C3FDCFA73011CA2CEA,
 				19C28FB0FE9D524F11CA2CBB,
@@ -279,7 +280,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
+				OTHER_CFLAGS = "-DSUPPORT_UTF8 -DPOSIX_MALLOC_THRESHOLD=10";
 				OTHER_LDFLAGS = "";
 				PRECOMPILE_PREFIX_HEADER = YES;
 				PREFIX_HEADER = AquaLess_Prefix.h;
@@ -340,7 +341,7 @@
 	<key>CFBundleExecutable</key>
 	<string>AquaLess</string>
 	<key>CFBundleGetInfoString</key>
-	<string>1.2, released April 15, 2003</string>
+	<string>1.3, released April xx, 2003</string>
 	<key>CFBundleIconFile</key>
 	<string>scroll.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -352,7 +353,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2</string>
+	<string>1.3</string>
 	<key>CFBundleSignature</key>
 	<string>Lêss</string>
 	<key>NSMainNibFile</key>
@@ -380,6 +381,10 @@
 				9DCE8DB70416511200A81608,
 				9DC8FEAA04191F9400A81608,
 				9D6B421F042DBD5500F86BBE,
+				9DC53C98045D6C1500C7B3CF,
+				9DC53C9B045D6C1500C7B3CF,
+				9DC53C9D045D6C1500C7B3CF,
+				9DC53CA0045D6C1500C7B3CF,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +422,11 @@
 				9DCE8DB80416511200A81608,
 				9DC8FEAB04191F9400A81608,
 				9D6B4220042DBD5500F86BBE,
+				9DC53C99045D6C1500C7B3CF,
+				9DC53C9C045D6C1500C7B3CF,
+				9DC53C9E045D6C1500C7B3CF,
+				9DC53C9F045D6C1500C7B3CF,
+				9DC53CA1045D6C1500C7B3CF,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -899,6 +909,147 @@
 		};
 		9DA64F51040C184500A81664 = {
 			fileRef = 1058C7A7FEA54F5311CA2CBB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		9DC53C8D045D6BEA00C7B3CF = {
+			children = (
+				9DC53C8F045D6C1500C7B3CF,
+				9DC53C8E045D6C1500C7B3CF,
+				9DC53C91045D6C1500C7B3CF,
+				9DC53C96045D6C1500C7B3CF,
+				9DC53C95045D6C1500C7B3CF,
+				9DC53C93045D6C1500C7B3CF,
+				9DC53C90045D6C1500C7B3CF,
+				9DC53C92045D6C1500C7B3CF,
+				9DC53C94045D6C1500C7B3CF,
+				9DC53C97045D6C1500C7B3CF,
+			);
+			isa = PBXGroup;
+			name = Regex;
+			refType = 4;
+		};
+		9DC53C8E045D6C1500C7B3CF = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			name = AGRegex.h;
+			path = regex/AGRegex.h;
+			refType = 4;
+		};
+		9DC53C8F045D6C1500C7B3CF = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			name = AGRegex.m;
+			path = regex/AGRegex.m;
+			refType = 4;
+		};
+		9DC53C90045D6C1500C7B3CF = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			name = chartables.c;
+			path = regex/chartables.c;
+			refType = 4;
+		};
+		9DC53C91045D6C1500C7B3CF = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			name = config.h;
+			path = regex/config.h;
+			refType = 4;
+		};
+		9DC53C92045D6C1500C7B3CF = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			name = get.c;
+			path = regex/get.c;
+			refType = 4;
+		};
+		9DC53C93045D6C1500C7B3CF = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			name = internal.h;
+			path = regex/internal.h;
+			refType = 4;
+		};
+		9DC53C94045D6C1500C7B3CF = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			name = maketables.c;
+			path = regex/maketables.c;
+			refType = 4;
+		};
+		9DC53C95045D6C1500C7B3CF = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			name = pcre.c;
+			path = regex/pcre.c;
+			refType = 4;
+		};
+		9DC53C96045D6C1500C7B3CF = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			name = pcre.h;
+			path = regex/pcre.h;
+			refType = 4;
+		};
+		9DC53C97045D6C1500C7B3CF = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			name = study.c;
+			path = regex/study.c;
+			refType = 4;
+		};
+		9DC53C98045D6C1500C7B3CF = {
+			fileRef = 9DC53C8E045D6C1500C7B3CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		9DC53C99045D6C1500C7B3CF = {
+			fileRef = 9DC53C8F045D6C1500C7B3CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		9DC53C9B045D6C1500C7B3CF = {
+			fileRef = 9DC53C91045D6C1500C7B3CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		9DC53C9C045D6C1500C7B3CF = {
+			fileRef = 9DC53C92045D6C1500C7B3CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		9DC53C9D045D6C1500C7B3CF = {
+			fileRef = 9DC53C93045D6C1500C7B3CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		9DC53C9E045D6C1500C7B3CF = {
+			fileRef = 9DC53C94045D6C1500C7B3CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		9DC53C9F045D6C1500C7B3CF = {
+			fileRef = 9DC53C95045D6C1500C7B3CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		9DC53CA0045D6C1500C7B3CF = {
+			fileRef = 9DC53C96045D6C1500C7B3CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		9DC53CA1045D6C1500C7B3CF = {
+			fileRef = 9DC53C97045D6C1500C7B3CF;
 			isa = PBXBuildFile;
 			settings = {
 			};
