@@ -27,6 +27,7 @@
 @interface ReadmeWindowController : NSWindowController
 {
   IBOutlet id display;
+  IBOutlet id scroller;
 
   MyDocumentController *controller;
   NSString *readmeName;

@@ -21,6 +21,7 @@
 
 #import "ReadmeWindowController.h"
 #import "MyDocumentController.h"
+#import "PagerTextView.h"
 
 
 @implementation ReadmeWindowController
@@ -54,9 +55,25 @@
 {
   [super windowDidLoad];
 
+  // replace text view from nib with custom subclass (didn't work in Interface Builder...)
+  NSRect tvFrame = [display frame];
+  tvFrame.origin.x = 0;  // pointless inside a clipview...
+  tvFrame.origin.y = 0;
+  display = [[[PagerTextView alloc] initWithFrame:tvFrame] autorelease];
+  [display setEditable:NO];
+  [display setSelectable:YES];
+  [display setRichText:YES];
+  //[[display layoutManager] replaceTextStorage:[self storage]];
+  [scroller setDocumentView:display];
+
+  // set up keyboard event routing
+  [[self window] setInitialFirstResponder:display];
+  
+  // read the file from disk
   NSString *fullPath = [[NSBundle mainBundle] pathForResource:readmeName ofType:@"rtf"];
   [display readRTFDFromFile:fullPath];
 
+  // set window title
   [[self window] setTitle:readmeName];
 }
 
