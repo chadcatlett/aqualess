@@ -341,7 +341,7 @@
 	<key>CFBundleExecutable</key>
 	<string>AquaLess</string>
 	<key>CFBundleGetInfoString</key>
-	<string>1.3, released April xx, 2003</string>
+	<string>1.3, released June 15, 2003</string>
 	<key>CFBundleIconFile</key>
 	<string>scroll.icns</string>
 	<key>CFBundleIdentifier</key>
