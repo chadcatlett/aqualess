@@ -54,14 +54,14 @@ static NSDictionary *styles[5] = { nil, nil, nil, nil, nil };
   }
 
   // parser state
-  unsigned offset, state = 0, akkuStyle = 0, x = 0;
+  unsigned offset, state = 0, akkuStyle = 0, lastStyle, x = 0;
   unichar c, lastC = 0;
   NSMutableString *akku = [NSMutableString string];
 
   /*
    state == 0: clean
-   state == 1: lastC contains the previous printable character, not yet processed
-   state == 2: lastC contains the previous printable character, which was followed by a backspace
+   state == 1: lastC/lastStyle contains the previous printable character, not yet processed
+   state == 2: lastC/lastStyle contains the previous printable character, which was followed by a backspace
 
    In all states, akku may contain chars, which use akkuStyle as their style. Styles:
    0: not set yet, akku is empty
@@ -101,7 +101,7 @@ static NSDictionary *styles[5] = { nil, nil, nil, nil, nil };
 
       if (state == 1) {
         // commit pending character
-        CommitCharWithStyle(lastC, 1);
+        CommitCharWithStyle(lastC, lastStyle);
       } // NOTE: in state 2, we assume that the backspace removed the pending char
       state = 0;
 
@@ -155,44 +155,49 @@ static NSDictionary *styles[5] = { nil, nil, nil, nil, nil };
             // underscore - bs - underscore: is this bold or underline?
             // -> guess from context
             if (akkuStyle == 3) {
-              CommitCharWithStyle(lastC, 3);
+              lastStyle = 3;
             } else {
-              CommitCharWithStyle(lastC, 2);
+              lastStyle = 2;
             }
           } else {
             // bold
-            CommitCharWithStyle(lastC, 2);
+            lastStyle = 2;
           }
-          state = 0;
+          // lastC is unmodified
         } else if (c == '_') {
           // underline, lastC is the real char
-          CommitCharWithStyle(lastC, 3);
-          state = 0;
+          lastStyle = 3;
+          // lastC is unmodified
         } else if (lastC == '_') {
           // underline, c is the real char
-          CommitCharWithStyle(c, 3);
-          state = 0;
+          lastStyle = 3;
+          lastC = c;
         } else {
           // replace
-          state = 1;
+          lastStyle = 1;
+          lastC = c;
         }
+        state = 1;
 
       } else if (state == 1) {
-        // normal case, add lastC in plain style, move this one to lastC
-        CommitCharWithStyle(lastC, 1);
-        // state stays at 1
+        // normal case, add lastC to akku, move this one to lastC
+        CommitCharWithStyle(lastC, lastStyle);
+        lastStyle = 1;
+        lastC = c;
+        // state is unmodified
 
       } else {
         // clean state, just push this char into lastC
+        lastStyle = 1;
+        lastC = c;
         state = 1;
       }
-      lastC = c;
 
     }
   }
   if (state == 1) {
     // commit pending character
-    CommitCharWithStyle(lastC, 1);
+    CommitCharWithStyle(lastC, lastStyle);
   } // NOTE: in state 2, we assume that the backspace removed the pending char
   CommitFully();
 
