@@ -54,7 +54,7 @@ static NSDictionary *styles[5] = { nil, nil, nil, nil, nil };
   }
 
   // parser state
-  unsigned offset, state = 0, akkuStyle = 0, lastStyle, x = 0;
+  unsigned offset, state = 0, akkuStyle = 0, lastStyle = 0, x = 0;
   unichar c, lastC = 0;
   NSMutableString *akku = [NSMutableString string];
 
