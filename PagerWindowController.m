@@ -22,6 +22,7 @@
 #import "PagerWindowController.h"
 #import "PagerDocument.h"
 #import "PagerTextView.h"
+#import "FindPanelController.h"
 #import "FontHelper.h"
 
 
@@ -33,6 +34,7 @@
 {
   if (self = [super initWithWindowNibName:@"PagerDocument"]) {
     [self setShouldCloseDocument:YES];
+    findPanel = nil;
   }
   return self;
 }
@@ -40,6 +42,9 @@
 - (void)dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+  if (findPanel != nil)
+    [findPanel release];
 
   [super dealloc];
 }
@@ -135,6 +140,26 @@
       break;
     }
   }
+}
+
+// find panel actions
+
+- (IBAction)showFindPanel:(id)sender
+{
+  if (findPanel == nil) {
+    findPanel = [[FindPanelController alloc] initWithController:self];
+  }
+
+  [findPanel runOnWindow:[self window]];
+}
+
+// low-level search
+
+- (void)findPattern:(NSString *)pattern fromPosition:(int)position backwards:(BOOL)back
+{
+  NSBeep();
+
+  [status setStringValue:@"Pattern not found."];
 }
 
 @end

@@ -20,6 +20,8 @@
 //
 
 #import "PagerTextView.h"
+#import "PagerWindowController.h"
+
 
 @implementation PagerTextView
 
@@ -79,6 +81,9 @@
       break;
     case 'q':
       [[self window] performClose:self];
+      break;
+    case '/':
+      [[[self window] delegate] showFindPanel:self];
       break;
     default:
       handled = NO;

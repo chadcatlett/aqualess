@@ -1,5 +1,5 @@
 //
-// PagerWindowController.h
+// FindPanelController.h
 //
 // AquaLess - a less-compatible text pager for Mac OS X
 // Copyright (c) 2003 Christoph Pfisterer
@@ -21,27 +21,26 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class FindPanelController;
+@class PagerWindowController;
 
 
-@interface PagerWindowController : NSWindowController
+@interface FindPanelController : NSWindowController
 {
-  IBOutlet id display;
-  IBOutlet id scroller;
-  IBOutlet id status;
-  IBOutlet id formatPopup;
+  IBOutlet id patternControl;
+  IBOutlet id directionControl;
 
-  FindPanelController *findPanel;
+  PagerWindowController *parentController;
 }
 
-- (NSTextStorage *)storage;
+- (id)initWithController:(PagerWindowController *)winC;
 
-- (void)updateStatus:(NSNotification *)notification;
+- (void)runOnWindow:(NSWindow *)parentWindow;
 
-- (IBAction)changeFormat:(id)sender;
+- (IBAction)dismissOk:(id)sender;
+- (IBAction)dismissCancel:(id)sender;
 
-- (IBAction)showFindPanel:(id)sender;
-
-- (void)findPattern:(NSString *)pattern fromPosition:(int)position backwards:(BOOL)back;
+- (void)findDidEnd:(NSWindow *)sheet
+        returnCode:(int)returnCode
+       contextInfo:(void *)contextInfo;
 
 @end

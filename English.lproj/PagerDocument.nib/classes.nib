@@ -9,7 +9,7 @@
         }, 
         {CLASS = PagerTextView; LANGUAGE = ObjC; SUPERCLASS = NSTextView; }, 
         {
-            ACTIONS = {changeFormat = id; }; 
+            ACTIONS = {changeFormat = id; showFindPanel = id; }; 
             CLASS = PagerWindowController; 
             LANGUAGE = ObjC; 
             OUTLETS = {display = id; formatPopup = id; scroller = id; status = id; }; 

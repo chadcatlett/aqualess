@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {dismissCancel = id; dismissOk = id; }; 
+            CLASS = FindPanelController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {directionControl = id; patternControl = id; }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
+    ); 
+    IBVersion = 1; 
+}

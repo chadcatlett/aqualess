@@ -157,6 +157,8 @@
 				9D7C345B040965FC00A81664,
 				9D028CDE040FCB7B00A81664,
 				9D028CDD040FCB7B00A81664,
+				9D6B421E042DBD5500F86BBE,
+				9D6B421D042DBD5500F86BBE,
 				9D5E8A4C040E088400A81664,
 				9D5E8A4B040E088400A81664,
 				9D028CFA041284B700A81664,
@@ -214,13 +216,14 @@
 		};
 		2A37F4B8FDCFA73011CA2CEA = {
 			children = (
-				2A37F4B9FDCFA73011CA2CEA,
+				089C165FFE840EACC02AAC07,
 				2A37F4B6FDCFA73011CA2CEA,
 				9D7C3458040965C200A81664,
 				9DCE8DBF04165E4900A81608,
-				089C165FFE840EACC02AAC07,
-				9DCE8DB904165DCF00A81608,
+				9D6B4221042DBE5E00F86BBE,
+				2A37F4B9FDCFA73011CA2CEA,
 				9DCE8DBB04165DCF00A81608,
+				9DCE8DB904165DCF00A81608,
 				9D6053D60419F91700A81608,
 			);
 			isa = PBXGroup;
@@ -378,6 +381,7 @@
 				9D4C893D0415118000A81664,
 				9DCE8DB70416511200A81608,
 				9DC8FEAA04191F9400A81608,
+				9D6B421F042DBD5500F86BBE,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +398,7 @@
 				9DCE8DC104165E4900A81608,
 				9DC8FEA704191F2700A81608,
 				9D6053D70419F91700A81608,
+				9D6B4223042DBE5E00F86BBE,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +418,7 @@
 				9D4C893E0415118000A81664,
 				9DCE8DB80416511200A81608,
 				9DC8FEAB04191F9400A81608,
+				9D6B4220042DBD5500F86BBE,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -679,6 +685,51 @@
 		9D6053D80419F94F00A81608 = {
 			isa = PBXTargetDependency;
 			target = 9DA64EF1040C011A00A81664;
+		};
+		9D6B421D042DBD5500F86BBE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			path = FindPanelController.h;
+			refType = 4;
+		};
+		9D6B421E042DBD5500F86BBE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			path = FindPanelController.m;
+			refType = 4;
+		};
+		9D6B421F042DBD5500F86BBE = {
+			fileRef = 9D6B421D042DBD5500F86BBE;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		9D6B4220042DBD5500F86BBE = {
+			fileRef = 9D6B421E042DBD5500F86BBE;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		9D6B4221042DBE5E00F86BBE = {
+			children = (
+				9D6B4222042DBE5E00F86BBE,
+			);
+			isa = PBXVariantGroup;
+			name = FindPanel.nib;
+			path = "";
+			refType = 4;
+		};
+		9D6B4222042DBE5E00F86BBE = {
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/FindPanel.nib;
+			refType = 4;
+		};
+		9D6B4223042DBE5E00F86BBE = {
+			fileRef = 9D6B4221042DBE5E00F86BBE;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		9D7C3458040965C200A81664 = {
 			children = (

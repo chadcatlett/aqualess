@@ -1,7 +1,7 @@
 {
     IBClasses = (
         {
-            ACTIONS = {showLicense = id; showReadme = id; }; 
+            ACTIONS = {showFindPanel = id; showLicense = id; showReadme = id; }; 
             CLASS = FirstResponder; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSObject; 
