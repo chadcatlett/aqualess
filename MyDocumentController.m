@@ -53,7 +53,7 @@
   // register server for the command line tool
   NSConnection *conn = [NSConnection defaultConnection];
   [conn setRootObject:self];
-  if ([conn registerName:@"AquaLess0"] == NO) {
+  if ([conn registerName:@"AquaLess1"] == NO) {
     NSRunAlertPanel(@"Server Registration Failed",
                     @"The AquaLess application failed to register its communication port with the system. The command line tool will not be able to contact the application.",
                     @"OK", nil, nil);

@@ -42,7 +42,7 @@ void connectToApp()
 {
   int tries;
   for (tries = 0; tries < 10; tries++) {
-    appProxy = [NSConnection rootProxyForConnectionWithRegisteredName:@"AquaLess0"
+    appProxy = [NSConnection rootProxyForConnectionWithRegisteredName:@"AquaLess1"
                                                                  host:nil];
     if (appProxy)
       break;

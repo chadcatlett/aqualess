@@ -275,7 +275,6 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
@@ -291,7 +290,6 @@
 			);
 			isa = PBXApplicationTarget;
 			name = AquaLess;
-			productInstallPath = "$(HOME)/Applications";
 			productName = AquaLess;
 			productReference = 1758732AFF379DA111CA2CBB;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
@@ -341,7 +339,7 @@
 	<key>CFBundleExecutable</key>
 	<string>AquaLess</string>
 	<key>CFBundleGetInfoString</key>
-	<string>Version 1.0</string>
+	<string>1.0, released March 11, 2003</string>
 	<key>CFBundleIconFile</key>
 	<string>scroll.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -356,8 +354,6 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>Lêss</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -485,6 +481,8 @@
 			);
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
 			};
 			isa = PBXBuildStyle;
 			name = Deployment;
