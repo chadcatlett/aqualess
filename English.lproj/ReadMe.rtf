@@ -1,0 +1,144 @@
+{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fnil\fcharset77 LucidaGrande;\f1\fnil\fcharset77 LucidaGrande-Bold;\f2\fnil\fcharset77 Monaco;
+}
+{\colortbl;\red255\green255\blue255;}
+\vieww11040\viewh12000\viewkind0
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f0\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\qc
+
+\f1\b\fs36 \cf0 AquaLess ReadMe
+\f0\b0\fs28 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs28 \cf0 AquaLess is a text pager for Mac OS\'caX. It allows you to browse plain text files and \'d0 more importantly \'d0 text output from Unix command line tools. AquaLess is a Cocoa replacement for the \'d2less\'d3 command, which is constrained to the terminal window. AquaLess opens a separate window for each text, so you can keep working in the terminal while you read.\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f1\b\fs28 \cf0 Installation Instructions\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f0\b0 \cf0 Copy the AquaLess application to a convenient location on your hard disk, e.g. the \'d2Applications\'d3 folder.\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs28 \cf0 The first time you run AquaLess, it will offer to install the \'d2aless\'d3 command line tool in a system directory. This makes it available in Terminal without further configuration, but requires an administrator password.\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f1\b\fs28 \cf0 Basic Usage\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f0\b0 \cf0 It is possible to open files of any kind through the \'d2File\'d3 menu, but the recommended way to work with AquaLess is from the command line. You can use the \'d2aless\'d3 command in the same basic way as the \'d2less\'d3 command. You can specify one or multiple files to display:\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\li400\ql\qnatural
+
+\f2\fs22 \cf0 aless README NEWS\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f0\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs28 \cf0 Or you can pipe the output from another command into aless for comfortable reading:\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\li400\ql\qnatural
+
+\f2\fs22 \cf0 ps ax | aless\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f0\fs28 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f1\b \cf0 Automatic Usage\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f0\b0 \cf0 Some commands (e.g. \'d2man\'d3) automatically invoke a text pager for their output. These commands get the name of the pager to use from the environment variable PAGER. To use AquaLess with these programs, set the variable to \'d2aless\'d3, like this:\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs16 \cf0 \
+\pard\tx3780\li400\ql\qnatural
+
+\f2\fs22 \cf0 setenv PAGER aless	
+\f0\fs24 (for tcsh)
+\f2\fs22 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f0\fs16 \cf0 \
+\pard\tx3780\li400\ql\qnatural
+
+\f2\fs22 \cf0 export PAGER=aless	
+\f0\fs24 (for bash)
+\f2\fs22 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f0\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs28 \cf0 If you are used to typing \'d2less\'d3, you can re-define that using an alias:\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs16 \cf0 \
+\pard\tx3780\li400\ql\qnatural
+
+\f2\fs22 \cf0 alias less aless	
+\f0\fs24 (for tcsh)
+\f2\fs22 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f0\fs16 \cf0 \
+\pard\tx3780\li400\ql\qnatural
+
+\f2\fs22 \cf0 alias less=aless	
+\f0\fs24 (for bash)
+\f2\fs22 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f0\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs28 \cf0 All of these customizations can be made permanent by adding the command to the shell\'d5s startup file. For tcsh, use .cshrc in your home directory, for bash .bashrc is appropriate.\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f1\b\fs28 \cf0 About Formats\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f0\b0 \cf0 AquaLess supports the special codes used by \'d2man\'d3 to encode bold and underlined words in plain text. This processing can be disabled using the popup menu at the bottom of each text window. The popup also allows you to select a \'d2Hex dump\'d3\'camode, which is more suitable for binary (i.e. non-text) files.\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f1\b\fs28 \cf0 Getting the Source
+\f0\b0 \
+AquaLess is \'d2Open Source\'d3 software. In addition to the program, you also get the full source code, so you can modify it to your liking. In fact, the license used for AquaLess effectively requires everyone who distributes the program to distribute the source along with it.\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f1\b\fs28 \cf0 Credits\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\f0\b0 \cf0 AquaLess was written by Christoph Pfisterer <chrisp@users.sourceforge.net>. The application icon is based on original art by Diana Todd, used with permission.\
+\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\qc
+\cf0 Have fun!
+\fs16 \
+ }

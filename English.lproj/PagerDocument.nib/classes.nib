@@ -1,0 +1,20 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = PagerDocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {display = id; scroller = id; }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {CLASS = PagerTextView; LANGUAGE = ObjC; SUPERCLASS = NSTextView; }, 
+        {
+            ACTIONS = {changeFormat = id; }; 
+            CLASS = PagerWindowController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {display = id; formatPopup = id; scroller = id; status = id; }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}
