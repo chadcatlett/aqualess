@@ -74,7 +74,7 @@
   [display readRTFDFromFile:fullPath];
 
   // set window title
-  [[self window] setTitle:readmeName];
+  [[self window] setTitle:[NSString stringWithFormat:@"AquaLess %@", readmeName]];
 }
 
 - (void)windowWillClose:(NSNotification *)aNotification
