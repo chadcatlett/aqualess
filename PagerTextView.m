@@ -88,16 +88,28 @@
       [[self window] performClose:self];
       break;
     case '/':
-      [[[self window] delegate] showFindPanelBackwards:NO];
+      if ([[[self window] delegate] respondsToSelector:@selector(showFindPanelBackwards:)])
+        [[[self window] delegate] showFindPanelBackwards:NO];
+      else
+        handled = NO;
       break;
     case '?':
-      [[[self window] delegate] showFindPanelBackwards:YES];
+      if ([[[self window] delegate] respondsToSelector:@selector(showFindPanelBackwards:)])
+        [[[self window] delegate] showFindPanelBackwards:YES];
+      else
+        handled = NO;
       break;
     case 'n':
-      [[[self window] delegate] findAgainSameDirection:self];
+      if ([[[self window] delegate] respondsToSelector:@selector(findAgainSameDirection:)])
+        [[[self window] delegate] findAgainSameDirection:self];
+      else
+        handled = NO;
       break;
     case 'N':
-      [[[self window] delegate] findAgainOtherDirection:self];
+      if ([[[self window] delegate] respondsToSelector:@selector(findAgainOtherDirection:)])
+        [[[self window] delegate] findAgainOtherDirection:self];
+      else
+        handled = NO;
       break;
     default:
       handled = NO;
