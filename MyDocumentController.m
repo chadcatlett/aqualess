@@ -53,7 +53,7 @@
   // register server for the command line tool
   NSConnection *conn = [NSConnection defaultConnection];
   [conn setRootObject:self];
-  if ([conn registerName:@"AquaLess1"] == NO) {
+  if ([conn registerName:@"AquaLess2"] == NO) {
     NSRunAlertPanel(@"Server Registration Failed",
                     @"The AquaLess application failed to register its communication port with the system. The command line tool will not be able to contact the application.",
                     @"OK", nil, nil);
@@ -81,6 +81,24 @@
   PagerDocument *pipeDoc = [self openUntitledDocumentOfType:@"Text File" display:YES];
   if (pipeDoc == nil)
     return -1;
+
+  // register an id and return it
+  int pipeId = nextPipeId++;
+  [pipes setObject:pipeDoc forKey:[NSNumber numberWithInt:pipeId]];
+  return pipeId;
+}
+
+- (int)openPipeWithTitle:(NSString *)title
+{
+  // bring us to the front
+  [NSApp activateIgnoringOtherApps:YES];
+
+  // make new document without file association
+  PagerDocument *pipeDoc = [self openUntitledDocumentOfType:@"Text File" display:NO];
+  if (pipeDoc == nil)
+    return -1;
+  [pipeDoc setGivenTitle:title];
+  [pipeDoc showWindows];
 
   // register an id and return it
   int pipeId = nextPipeId++;

@@ -36,6 +36,7 @@
 
 - (oneway void)openFileWithPath:(NSString *)filePath;
 - (int)openPipe;
+- (int)openPipeWithTitle:(NSString *)title;
 - (oneway void)addData:(NSData *)data toPipe:(int)pipeid;
 
 - (void)removeDocument:(NSDocument *)document;

@@ -44,7 +44,9 @@ NSString *StatusChangedNotification = @"Pager Status Changed Notification";
   if (self) {
 
     isFile = NO;
+    givenTitle = nil;
     fileHandle = nil;
+    tailWatchTimer = nil;
 
     data = [[NSMutableData alloc] init];
     if (data == nil) {
@@ -69,17 +71,28 @@ NSString *StatusChangedNotification = @"Pager Status Changed Notification";
 - (void)dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  
-  if (fileHandle != nil)
-    [fileHandle release];
+
+  [givenTitle release];
+  [fileHandle release];
+  [tailWatchTimer release];
   [storage release];
   [data release];
-  if (applicableFormats != nil)
-    [applicableFormats release];
-  if (parser != nil)
-    [parser release];
+  [applicableFormats release];
+  [parser release];
 
   [super dealloc];
+}
+
+- (void)close
+{
+  // make sure the we're ready to be released - tailWatchTimer may hold a reference on us
+  if (tailWatchTimer) {
+    [tailWatchTimer invalidate];
+    [tailWatchTimer autorelease];
+    tailWatchTimer = nil;
+  }
+
+  [super close];
 }
 
 // window title
@@ -88,6 +101,8 @@ NSString *StatusChangedNotification = @"Pager Status Changed Notification";
 {
   if (isFile)
     return [super displayName];
+  else if (givenTitle)
+    return givenTitle;
   else
     return @"Standard Input";
 }
@@ -162,20 +177,30 @@ NSString *StatusChangedNotification = @"Pager Status Changed Notification";
 {
   struct stat sb;
 
+  if (tailWatchTimer)
+    return;  // already in tail-watch mode
+
   if (fstat([fileHandle fileDescriptor], &sb) == 0) {
     lastSize = sb.st_size;
 
-    [NSTimer scheduledTimerWithTimeInterval:1
-                                     target:self
-                                   selector:@selector(tailWatchTimeout:)
-                                   userInfo:nil
-                                    repeats:NO];
+    tailWatchTimer =
+      [NSTimer scheduledTimerWithTimeInterval:1
+                                       target:self
+                                     selector:@selector(tailWatchTimeout:)
+                                     userInfo:nil
+                                      repeats:NO];
+    [tailWatchTimer retain];
   }
 }
 
 - (void)tailWatchTimeout:(NSTimer *)timer
 {
   struct stat sb;
+
+  if (tailWatchTimer == timer) {
+    [tailWatchTimer autorelease];
+    tailWatchTimer = nil;
+  }
 
   if (fstat([fileHandle fileDescriptor], &sb) == 0) {
     unsigned long long newSize = sb.st_size;
@@ -188,16 +213,30 @@ NSString *StatusChangedNotification = @"Pager Status Changed Notification";
       // TODO: close the file and re-read it from the beginning
     } else {
       // nothing changed, try again later
-      [NSTimer scheduledTimerWithTimeInterval:1
-                                       target:self
-                                     selector:@selector(tailWatchTimeout:)
-                                     userInfo:nil
-                                      repeats:NO];
+      [tailWatchTimer autorelease];
+      tailWatchTimer = 
+        [NSTimer scheduledTimerWithTimeInterval:1
+                                         target:self
+                                       selector:@selector(tailWatchTimeout:)
+                                       userInfo:nil
+                                        repeats:NO];
+      [tailWatchTimer retain];
     }
   }
 }
 
 // data access
+
+- (NSString *)givenTitle
+{
+  return givenTitle;
+}
+
+- (void)setGivenTitle:(NSString *)newTitle
+{
+  [givenTitle autorelease];
+  givenTitle = [newTitle retain];
+}
 
 - (NSData *)data
 {

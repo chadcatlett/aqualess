@@ -26,6 +26,8 @@
 #define BUFSIZE (8192)
 
 
+const char *version_id = "|aless_version_id|1.4|";
+
 const char *progname;
 int exitcode = 0;
 NSDistantObject <AquaLess> *appProxy = nil;
@@ -34,9 +36,10 @@ NSDistantObject <AquaLess> *appProxy = nil;
 void usage()
 {
   fprintf(stderr,
-          "Usage: <command> | %s\n"
+          "Usage: <command> | %s [-t Title]\n"
           "       %s <file>...\n"
-          "Options: -h   Display this usage message\n"
+          "Options: -t   Set window title for piped data\n"
+          "         -h   Display this usage message\n"
           "         -v   Display version information\n"
           , progname, progname);
   exitcode = 1;
@@ -45,7 +48,7 @@ void usage()
 void version()
 {
   fprintf(stderr,
-          "aless 1.2, the AquaLess command line tool\n"
+          "aless 1.4, the AquaLess command line tool\n"
           "Copyright (c) 2003 Christoph Pfisterer.\n"
           "Visit http://aqualess.sourceforge.net/ for more information.\n"
           );
@@ -56,7 +59,7 @@ void connectToApp()
 {
   int tries;
   for (tries = 0; tries < 10; tries++) {
-    appProxy = [NSConnection rootProxyForConnectionWithRegisteredName:@"AquaLess1"
+    appProxy = [NSConnection rootProxyForConnectionWithRegisteredName:@"AquaLess2"
                                                                  host:nil];
     if (appProxy)
       break;
@@ -90,13 +93,16 @@ void openFiles(NSArray *files)
   }
 }
 
-void doPipe()
+void doPipe(NSString *window_title)
 {
   int pipeId;
   ssize_t got;
   char buf[BUFSIZE];
 
-  pipeId = [appProxy openPipe];
+  if (window_title)
+    pipeId = [appProxy openPipeWithTitle:window_title];
+  else
+    pipeId = [appProxy openPipe];
   if (pipeId < 0) {
     fprintf(stderr, "%s: Error while talking to the AquaLess application\n", progname);
     exitcode = 1;
@@ -128,13 +134,17 @@ void objc_main(int argc, char * const *argv)
 {
   // parse command line: options
   int c;
-  while (!exitcode && (c = getopt(argc, argv, "hv")) != -1) {
+  NSString *window_title = nil;
+  while (!exitcode && (c = getopt(argc, argv, "hvt:")) != -1) {
     switch (c) {
       case 'h':
         usage();
         break;
       case 'v':
         version();
+        break;
+      case 't':
+        window_title = [NSString stringWithCString:optarg];
         break;
       default:
         usage();
@@ -171,7 +181,7 @@ void objc_main(int argc, char * const *argv)
     if (!exitcode)
       connectToApp();
     if (!exitcode)
-      doPipe();
+      doPipe(window_title);
   }
 }
 

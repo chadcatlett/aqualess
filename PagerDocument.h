@@ -30,8 +30,10 @@
   IBOutlet id scroller;
 
   BOOL isFile;
+  NSString *givenTitle;
   NSFileHandle *fileHandle;
   unsigned long long lastSize;
+  NSTimer *tailWatchTimer;
 
   NSMutableData *data;
   NSTextStorage *storage;
@@ -50,6 +52,9 @@
 - (void)tailWatchTimeout:(NSTimer *)timer;
 
 // data access
+
+- (NSString *)givenTitle;
+- (void)setGivenTitle:(NSString *)newTitle;
 
 - (NSData *)data;
 - (void)addData:(NSData *)data;
