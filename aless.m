@@ -26,7 +26,7 @@
 #define BUFSIZE (8192)
 
 
-const char *version_id = "|aless_version_id|1.4|";
+const char *version_id = "|aless_version_id|1.5|";
 
 const char *progname;
 int exitcode = 0;

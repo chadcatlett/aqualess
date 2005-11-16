@@ -207,6 +207,7 @@
 				9DCE8DBB04165DCF00A81608,
 				9DCE8DB904165DCF00A81608,
 				9D6053D60419F91700A81608,
+				9D5DDE4906089F2E00A2159C,
 			);
 			isa = PBXGroup;
 			name = Resources;
@@ -422,6 +423,20 @@
 			path = RawTextInputParser.m;
 			refType = 4;
 			sourceTree = "<group>";
+		};
+		9D5DDE4906089F2E00A2159C = {
+			fileEncoding = 12;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = MacPAD.url;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		9D5DDE4A06089F2E00A2159C = {
+			fileRef = 9D5DDE4906089F2E00A2159C;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		9D5E8A4B040E088400A81664 = {
 			fileEncoding = 30;
@@ -829,6 +844,7 @@
 				9DB8DEC20590C1370039D27C,
 				9DB8DEC40590C1370039D27C,
 				9DB8DEC50590C1370039D27C,
+				9D5DDE4A06089F2E00A2159C,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
