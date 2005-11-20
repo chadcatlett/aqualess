@@ -60,6 +60,8 @@
 		9DB8DED80590C1370039D27C /* study.c in Sources */ = {isa = PBXBuildFile; fileRef = 9DC53C97045D6C1500C7B3CF /* study.c */; };
 		9DB8DEDA0590C1370039D27C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		9DB8DEDB0590C1370039D27C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC8FEAC0419293800A81608 /* Security.framework */; };
+		9DE658A60930C22400394832 /* FontDisplayNameTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DE658A40930C22400394832 /* FontDisplayNameTransformer.h */; };
+		9DE658A70930C22400394832 /* FontDisplayNameTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE658A50930C22400394832 /* FontDisplayNameTransformer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
@@ -136,7 +138,7 @@
 		9DA64F0C040C0D1000A81664 /* MyDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyDocumentController.h; sourceTree = "<group>"; };
 		9DB8DEA20590C11B0039D27C /* aless */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = aless; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DB8DEDD0590C1370039D27C /* Info-AquaLess.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-AquaLess.plist"; sourceTree = "<group>"; };
-		9DB8DEDE0590C1370039D27C /* AquaLess.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AquaLess.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DB8DEDE0590C1370039D27C /* AquaLess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AquaLess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC53C8E045D6C1500C7B3CF /* AGRegex.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; name = AGRegex.h; path = regex/AGRegex.h; sourceTree = "<group>"; };
 		9DC53C8F045D6C1500C7B3CF /* AGRegex.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; name = AGRegex.m; path = regex/AGRegex.m; sourceTree = "<group>"; };
 		9DC53C90045D6C1500C7B3CF /* chartables.c */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.c; name = chartables.c; path = regex/chartables.c; sourceTree = "<group>"; };
@@ -155,6 +157,8 @@
 		9DCE8DBA04165DCF00A81608 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/License.rtf; sourceTree = "<group>"; };
 		9DCE8DBC04165DCF00A81608 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/ReadMe.rtf; sourceTree = "<group>"; };
 		9DCE8DC004165E4900A81608 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/ReadmeWindow.nib; sourceTree = "<group>"; };
+		9DE658A40930C22400394832 /* FontDisplayNameTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontDisplayNameTransformer.h; sourceTree = "<group>"; };
+		9DE658A50930C22400394832 /* FontDisplayNameTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontDisplayNameTransformer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +245,8 @@
 				9D028D010413A78700A81664 /* HexdumpInputParser.h */,
 				9DCE8DB60416511200A81608 /* ReadmeWindowController.m */,
 				9DCE8DB50416511200A81608 /* ReadmeWindowController.h */,
+				9DE658A50930C22400394832 /* FontDisplayNameTransformer.m */,
+				9DE658A40930C22400394832 /* FontDisplayNameTransformer.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 				9DB8DEB80590C1370039D27C /* config.h in Headers */,
 				9DB8DEB90590C1370039D27C /* internal.h in Headers */,
 				9DB8DEBA0590C1370039D27C /* pcre.h in Headers */,
+				9DE658A60930C22400394832 /* FontDisplayNameTransformer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +507,7 @@
 				9DB8DED60590C1370039D27C /* maketables.c in Sources */,
 				9DB8DED70590C1370039D27C /* pcre.c in Sources */,
 				9DB8DED80590C1370039D27C /* study.c in Sources */,
+				9DE658A70930C22400394832 /* FontDisplayNameTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,24 +636,6 @@
 			};
 			name = Release;
 		};
-		9DF994060885745D00ABA917 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = AquaLess_Prefix.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = aless;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost";
-				ZERO_LINK = NO;
-			};
-			name = Default;
-		};
 		9DF994080885745D00ABA917 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -666,6 +656,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Info-AquaLess.plist";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
@@ -707,34 +698,10 @@
 			};
 			name = Release;
 		};
-		9DF9940A0885745D00ABA917 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = AquaLess_Prefix.h;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					SUPPORT_UTF8,
-					"POSIX_MALLOC_THRESHOLD=10",
-				);
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "Info-AquaLess.plist";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = AquaLess;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
 		9DF9940C0885745D00ABA917 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Debug;
@@ -746,18 +713,10 @@
 					ppc,
 					i386,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Release;
-		};
-		9DF9940E0885745D00ABA917 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
-			};
-			name = Default;
 		};
 /* End XCBuildConfiguration section */
 
@@ -767,30 +726,27 @@
 			buildConfigurations = (
 				9DF994040885745D00ABA917 /* Debug */,
 				9DF994050885745D00ABA917 /* Release */,
-				9DF994060885745D00ABA917 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Debug;
 		};
 		9DF994070885745D00ABA917 /* Build configuration list for PBXNativeTarget "AquaLess" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9DF994080885745D00ABA917 /* Debug */,
 				9DF994090885745D00ABA917 /* Release */,
-				9DF9940A0885745D00ABA917 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Debug;
 		};
 		9DF9940B0885745D00ABA917 /* Build configuration list for PBXProject "AquaLess" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9DF9940C0885745D00ABA917 /* Debug */,
 				9DF9940D0885745D00ABA917 /* Release */,
-				9DF9940E0885745D00ABA917 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

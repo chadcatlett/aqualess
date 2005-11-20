@@ -2,7 +2,7 @@
 // MyDocumentController.m
 //
 // AquaLess - a less-compatible text pager for Mac OS X
-// Copyright (c) 2003 Christoph Pfisterer
+// Copyright (c) 2003-2005 Christoph Pfisterer
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -23,9 +23,17 @@
 #import "PagerDocument.h"
 #import "ReadmeWindowController.h"
 #import "ToolInstaller.h"
+#import "FontDisplayNameTransformer.h"
 
 
 @implementation MyDocumentController
+
++ (void)initialize
+{
+  // register value transformers
+  id transformer = [[[FontDisplayNameTransformer alloc] init] autorelease];
+  [NSValueTransformer setValueTransformer:transformer forName:@"FontDisplayNameTransformer"];
+}
 
 - (id)init
 {
@@ -35,6 +43,23 @@
     nextPipeId = 0;
     pipes = [[NSMutableDictionary dictionary] retain];
     readmeWindows = [[NSMutableDictionary dictionary] retain];
+
+	// register default preference values
+    normalTextColor = [[NSColor blackColor] retain];
+    boldTextColor = [[NSColor blueColor] retain];
+    normalTextFont = [[[NSFontManager sharedFontManager] fontWithFamily:@"Monaco"
+                             traits:NSUnboldFontMask|NSUnitalicFontMask
+                             weight:5
+                               size:10] retain];
+
+	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+	  [NSArchiver archivedDataWithRootObject:normalTextColor], @"normalTextColor",
+	  [NSArchiver archivedDataWithRootObject:boldTextColor], @"boldTextColor",
+	  [NSArchiver archivedDataWithRootObject:normalTextFont], @"normalTextFont",
+	  nil, nil];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:dict];
+
+	// TODO: retrieve actual preference setting for normalTextFont for local use
 
   }
   return self;
@@ -172,6 +197,32 @@
   if (wc == nil)
     wc = [[[ReadmeWindowController alloc] initWithReadmeName:readmeName controller:self] autorelease];
   [[wc window] makeKeyAndOrderFront:nil];
+}
+
+- (IBAction)setFontPressed:(id)sender
+{
+  // disabled since it doesn't work as advertised:
+  //[[NSFontManager sharedFontManager] setSelectedFont:normalTextFont isMultiple:NO];
+  // set up the font panel directly instead:
+  [[NSFontPanel sharedFontPanel] setPanelFont:normalTextFont isMultiple:NO];
+
+  // show the font panel
+  [[NSFontPanel sharedFontPanel] makeKeyAndOrderFront:self];
+}
+
+- (void)changeFont:(id)sender
+{
+  NSFont *oldFont = normalTextFont;
+  NSFont *newFont = [sender convertFont:oldFont];
+
+  [normalTextFont autorelease];
+  normalTextFont = [newFont retain];
+
+  [[[NSUserDefaultsController sharedUserDefaultsController] values]
+      setValue:[NSArchiver archivedDataWithRootObject:normalTextFont]
+	  forKey:@"normalTextFont"];
+
+  // TODO: notify open windows and FontHelper.m
 }
 
 @end

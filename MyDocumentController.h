@@ -2,7 +2,7 @@
 // MyDocumentController.h
 //
 // AquaLess - a less-compatible text pager for Mac OS X
-// Copyright (c) 2003 Christoph Pfisterer
+// Copyright (c) 2003-2005 Christoph Pfisterer
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -30,6 +30,10 @@
   int nextPipeId;
   NSMutableDictionary *pipes;
   NSMutableDictionary *readmeWindows;
+
+  NSColor *normalTextColor;
+  NSColor *boldTextColor;
+  NSFont *normalTextFont;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification;
@@ -50,5 +54,8 @@
 
 - (IBAction)showReadme:(id)sender;
 - (IBAction)showLicense:(id)sender;
+
+- (IBAction)setFontPressed:(id)sender;
+- (void)changeFont:(id)sender;
 
 @end

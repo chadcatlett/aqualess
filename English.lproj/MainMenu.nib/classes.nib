@@ -4,6 +4,7 @@
             ACTIONS = {
                 findAgainBackwards = id; 
                 findAgainForwards = id; 
+                setFontPressed = id; 
                 showFindPanel = id; 
                 showLicense = id; 
                 showReadme = id; 
@@ -13,7 +14,7 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {newShell = id; showLicense = id; showReadme = id; }; 
+            ACTIONS = {newShell = id; setFontPressed = id; showLicense = id; showReadme = id; }; 
             CLASS = MyDocumentController; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSDocumentController; 
