@@ -2,7 +2,7 @@
 // aless.m
 //
 // AquaLess - a less-compatible text pager for Mac OS X
-// Copyright (c) 2003 Christoph Pfisterer
+// Copyright (c) 2003-2005 Christoph Pfisterer
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -48,8 +48,8 @@ void usage()
 void version()
 {
   fprintf(stderr,
-          "aless 1.4, the AquaLess command line tool\n"
-          "Copyright (c) 2003 Christoph Pfisterer.\n"
+          "aless 1.5, the AquaLess command line tool\n"
+          "Copyright (c) 2003-2005 Christoph Pfisterer.\n"
           "Visit http://aqualess.sourceforge.net/ for more information.\n"
           );
   exitcode = 1;
