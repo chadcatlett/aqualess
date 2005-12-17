@@ -37,9 +37,9 @@
 - (id)transformedValue:(id)archivedObject
 {
     if (archivedObject == nil)
-		return nil;
-	NSFont *font = (NSFont *)[NSUnarchiver unarchiveObjectWithData:archivedObject];
-	return [NSString stringWithFormat:@"%@, %.1f", [font displayName], [font pointSize]];
+        return nil;
+    NSFont *font = (NSFont *)[NSUnarchiver unarchiveObjectWithData:archivedObject];
+    return [NSString stringWithFormat:@"%@, %.1f", [font displayName], [font pointSize]];
 }
 
 @end

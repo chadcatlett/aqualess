@@ -19,7 +19,6 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#import <Cocoa/Cocoa.h>
 #import "AquaLess_Protocol.h"
 
 @class ReadmeWindowController;
@@ -27,13 +26,11 @@
 
 @interface MyDocumentController : NSDocumentController <AquaLess>
 {
-  int nextPipeId;
-  NSMutableDictionary *pipes;
-  NSMutableDictionary *readmeWindows;
-
-  NSColor *normalTextColor;
-  NSColor *boldTextColor;
-  NSFont *normalTextFont;
+    int nextPipeId;
+    NSMutableDictionary *pipes;
+    NSMutableDictionary *readmeWindows;
+    
+    NSFont *normalTextFont;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification;
