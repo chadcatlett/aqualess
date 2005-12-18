@@ -28,77 +28,77 @@
 
 + (int)priority
 {
-  return 1;
+    return 1;
 }
 
 + (NSString *)name
 {
-  return @"Raw Text";
+    return @"Raw Text";
 }
 
 + (BOOL)canReadData:(NSData *)partialData
 {
-  return YES;
+    return YES;
 }
 
 - (void)parseData:(NSData *)data fromOffset:(unsigned)startOffset toOffset:(unsigned)endOffset
 {
-  // init style table
-  NSDictionary *plainAttr = fontHelperAttr(FontStylePlain);
-  NSDictionary *invertedAttr = fontHelperAttr(FontStyleInverted);
-
-  // parser state
-  unsigned offset;
-  unichar c, lastC = 0;
-  NSMutableString *akku = [NSMutableString string];
-
-  for (offset = startOffset; offset < endOffset; offset++) {
-    c = ((const unsigned char *)[data bytes])[offset];
-
-    if (c < 32 || (c >= 127 && c < 128+32)) {
-      // non-printable character
-
-      [self addString:akku withAttributes:plainAttr];
-      [akku setString:@""];
-
-      if (c == NSCarriageReturnCharacter) {
-        // set checkpoint _before_ the line break
-        [self setCheckpoint:offset];
-
-        lastC = '\n';  // for temp purposes, overwritten later by c
-        [akku appendString:[NSString stringWithCharacters:&lastC length:1]];
-      } else if (c == NSNewlineCharacter) {
-        if (lastC != NSCarriageReturnCharacter) {
-          // set checkpoint _before_ the line break
-          [self setCheckpoint:offset];
-
-          lastC = '\n';  // for temp purposes, overwritten later by c
-          [akku appendString:[NSString stringWithCharacters:&lastC length:1]];
+    // init style table
+    NSDictionary *plainAttr = fontHelperAttr(FontStylePlain);
+    NSDictionary *invertedAttr = fontHelperAttr(FontStyleInverted);
+    
+    // parser state
+    unsigned offset;
+    unichar c, lastC = 0;
+    NSMutableString *akku = [NSMutableString string];
+    
+    for (offset = startOffset; offset < endOffset; offset++) {
+        c = ((const unsigned char *)[data bytes])[offset];
+        
+        if (c < 32 || (c >= 127 && c < 128+32)) {
+            // non-printable character
+            
+            [self addString:akku withAttributes:plainAttr];
+            [akku setString:@""];
+            
+            if (c == NSCarriageReturnCharacter) {
+                // set checkpoint _before_ the line break
+                [self setCheckpoint:offset];
+                
+                lastC = '\n';  // for temp purposes, overwritten later by c
+                [akku appendString:[NSString stringWithCharacters:&lastC length:1]];
+            } else if (c == NSNewlineCharacter) {
+                if (lastC != NSCarriageReturnCharacter) {
+                    // set checkpoint _before_ the line break
+                    [self setCheckpoint:offset];
+                    
+                    lastC = '\n';  // for temp purposes, overwritten later by c
+                    [akku appendString:[NSString stringWithCharacters:&lastC length:1]];
+                }
+            } else {
+                // print control char in inverse face
+                if (c == 27) {  // escape
+                    [self addString:@"ESC" withAttributes:invertedAttr];
+                } else if (c < 32) {  // control sequence
+                    [self addString:[NSString stringWithFormat:@"^%c", (int)c ^ 64]
+                     withAttributes:invertedAttr];
+                } else {  // hex
+                    [self addString:[NSString stringWithFormat:@"<%X>", (int)c]
+                     withAttributes:invertedAttr];
+                }
+            }
+            
+        } else {
+            // printable character
+            [akku appendString:[NSString stringWithCharacters:&c length:1]];
+            
         }
-      } else {
-        // print control char in inverse face
-        if (c == 27) {  // escape
-          [self addString:@"ESC" withAttributes:invertedAttr];
-        } else if (c < 32) {  // control sequence
-          [self addString:[NSString stringWithFormat:@"^%c", (int)c ^ 64]
-           withAttributes:invertedAttr];
-        } else {  // hex
-          [self addString:[NSString stringWithFormat:@"<%X>", (int)c]
-           withAttributes:invertedAttr];
-        }
-      }
-
-    } else {
-      // printable character
-      [akku appendString:[NSString stringWithCharacters:&c length:1]];
-
+        lastC = c;
     }
-    lastC = c;
-  }
-  [self addString:akku withAttributes:plainAttr];
-
-  // remove the trailing newline if present
-  [self chomp];
+    [self addString:akku withAttributes:plainAttr];
+    
+    // remove the trailing newline if present
+    [self chomp];
 }
 
 @end

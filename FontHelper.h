@@ -25,6 +25,8 @@
 #define FontStyleBoldUnderline (4)
 #define FontStyleInverted (5)
 
+void reinitFonts();
+
 NSSize fontHelperCellSize();
 NSFont *fontHelperFont(int style);
 NSDictionary *fontHelperAttr(int style);

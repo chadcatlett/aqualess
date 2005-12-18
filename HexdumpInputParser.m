@@ -28,93 +28,93 @@
 
 + (int)priority
 {
-  return 1;
+    return 1;
 }
 
 + (NSString *)name
 {
-  return @"Hex dump";
+    return @"Hex dump";
 }
 
 + (BOOL)canReadData:(NSData *)partialData
 {
-  return YES;
+    return YES;
 }
 
 - (void)parseData:(NSData *)data fromOffset:(unsigned)startOffset toOffset:(unsigned)endOffset
 {
-  unsigned i, offset, linelen;
-  const unsigned char *linedata;
-  unichar c;
-  NSMutableString *line = [[NSMutableString alloc] init];
-  NSDictionary *plainAttr = fontHelperAttr(FontStylePlain);
-
-  for (offset = startOffset; offset + 16 <= endOffset; offset += 16) {
-    // format a complete line
-    linedata = ((const unsigned char *)[data bytes]) + offset;
-    [line setString:@""];
-
-    [line appendFormat:@"%08x  ", offset];
-
-    for (i = 0; i < 16; i++) {
-      [line appendFormat:@"%02x ", (unsigned)linedata[i]];
-      if (i == 7)
-        [line appendString:@" "];
+    unsigned i, offset, linelen;
+    const unsigned char *linedata;
+    unichar c;
+    NSMutableString *line = [[NSMutableString alloc] init];
+    NSDictionary *plainAttr = fontHelperAttr(FontStylePlain);
+    
+    for (offset = startOffset; offset + 16 <= endOffset; offset += 16) {
+        // format a complete line
+        linedata = ((const unsigned char *)[data bytes]) + offset;
+        [line setString:@""];
+        
+        [line appendFormat:@"%08x  ", offset];
+        
+        for (i = 0; i < 16; i++) {
+            [line appendFormat:@"%02x ", (unsigned)linedata[i]];
+            if (i == 7)
+                [line appendString:@" "];
+        }
+        
+        [line appendString:@" |"];
+        for (i = 0; i < 16; i++) {
+            c = linedata[i];
+            if (c < 32 || (c >= 127 && c < 128+32))
+                c = '.';
+            [line appendString:[NSString stringWithCharacters:&c length:1]];
+        }
+        [line appendString:@"|\n"];
+        
+        [self addString:line withAttributes:plainAttr];
     }
-
-    [line appendString:@" |"];
-    for (i = 0; i < 16; i++) {
-      c = linedata[i];
-      if (c < 32 || (c >= 127 && c < 128+32))
-        c = '.';
-      [line appendString:[NSString stringWithCharacters:&c length:1]];
+    
+    // set checkpoint after last complete line
+    [self setCheckpoint:offset];
+    
+    if (offset < endOffset) {
+        // there actually is (incomplete) data for the last line
+        linelen = endOffset - offset;
+        linedata = ((const unsigned char *)[data bytes]) + offset;
+        [line setString:@""];
+        
+        [line appendFormat:@"%08x  ", offset];
+        
+        for (i = 0; i < linelen; i++) {
+            [line appendFormat:@"%02x ", (unsigned)linedata[i]];
+            if (i == 7)
+                [line appendString:@" "];
+        }
+        for (; i < 16; i++) {
+            if (i == 7)
+                [line appendString:@"    "];
+            else
+                [line appendString:@"   "];
+        }
+        
+        [line appendString:@" |"];
+        for (i = 0; i < linelen; i++) {
+            c = linedata[i];
+            if (c < 32 || (c >= 127 && c < 128+32))
+                c = '.';
+            [line appendString:[NSString stringWithCharacters:&c length:1]];
+        }
+        [line appendString:@"|\n"];
+        
+        [self addString:line withAttributes:plainAttr];
+        
+        offset += linelen;
     }
-    [line appendString:@"|\n"];
-
-    [self addString:line withAttributes:plainAttr];
-  }
-
-  // set checkpoint after last complete line
-  [self setCheckpoint:offset];
-
-  if (offset < endOffset) {
-    // there actually is (incomplete) data for the last line
-    linelen = endOffset - offset;
-    linedata = ((const unsigned char *)[data bytes]) + offset;
-    [line setString:@""];
-
-    [line appendFormat:@"%08x  ", offset];
-
-    for (i = 0; i < linelen; i++) {
-      [line appendFormat:@"%02x ", (unsigned)linedata[i]];
-      if (i == 7)
-        [line appendString:@" "];
-    }
-    for (; i < 16; i++) {
-      if (i == 7)
-        [line appendString:@"    "];
-      else
-        [line appendString:@"   "];
-    }
-
-    [line appendString:@" |"];
-    for (i = 0; i < linelen; i++) {
-      c = linedata[i];
-      if (c < 32 || (c >= 127 && c < 128+32))
-        c = '.';
-      [line appendString:[NSString stringWithCharacters:&c length:1]];
-    }
-    [line appendString:@"|\n"];
-
-    [self addString:line withAttributes:plainAttr];
-
-    offset += linelen;
-  }
-
-  [line release];
-  
-  // add the final offset on the last line, no newline
-  [self addString:[NSString stringWithFormat:@"%08x", offset] withAttributes:plainAttr];
+    
+    [line release];
+    
+    // add the final offset on the last line, no newline
+    [self addString:[NSString stringWithFormat:@"%08x", offset] withAttributes:plainAttr];
 }
 
 @end

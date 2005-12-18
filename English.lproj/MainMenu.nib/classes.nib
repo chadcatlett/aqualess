@@ -14,7 +14,14 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {newShell = id; setFontPressed = id; showLicense = id; showReadme = id; }; 
+            ACTIONS = {
+                applyPrefs = id; 
+                changeFont = id; 
+                newShell = id; 
+                setFontPressed = id; 
+                showLicense = id; 
+                showReadme = id; 
+            }; 
             CLASS = MyDocumentController; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSDocumentController; 

@@ -24,6 +24,7 @@
 #import "ReadmeWindowController.h"
 #import "ToolInstaller.h"
 #import "FontDisplayNameTransformer.h"
+#import "FontHelper.h"
 
 
 @implementation MyDocumentController
@@ -228,8 +229,15 @@
     [[[NSUserDefaultsController sharedUserDefaultsController] values]
       setValue:[NSArchiver archivedDataWithRootObject:normalTextFont]
         forKey:@"normalTextFont"];
+}
+
+- (IBAction)applyPrefs:(id)sender
+{
+    [[NSUserDefaultsController sharedUserDefaultsController] save:sender];
     
-    // TODO: notify open windows and FontHelper.m
+    reinitFonts();
+    
+    // TODO: notify open windows
 }
 
 @end

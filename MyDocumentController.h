@@ -54,5 +54,6 @@
 
 - (IBAction)setFontPressed:(id)sender;
 - (void)changeFont:(id)sender;
+- (IBAction)applyPrefs:(id)sender;
 
 @end
