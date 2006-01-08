@@ -43,7 +43,7 @@
 	<key>CFBundleExecutable</key>
 	<string>AquaLess</string>
 	<key>CFBundleGetInfoString</key>
-	<string>1.5, released November xx, 2005</string>
+	<string>1.5</string>
 	<key>CFBundleIconFile</key>
 	<string>scroll</string>
 	<key>CFBundleIdentifier</key>
@@ -55,11 +55,19 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>Version 1.5</string>
+	<string>1.5</string>
 	<key>CFBundleSignature</key>
 	<string>Less</string>
 	<key>CFBundleVersion</key>
 	<string>1.5</string>
+	<key>CYProductHomePage</key>
+	<string>http://aqualess.sourceforge.net/</string>
+	<key>CYVendorHomePage</key>
+	<string>http://chrisp.de/</string>
+	<key>CYVendorName</key>
+	<string>Christoph Pfisterer</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.3.9</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
