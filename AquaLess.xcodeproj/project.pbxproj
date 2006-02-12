@@ -219,7 +219,7 @@
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
-			comments = "The Release configuration is set up to build a universal binary targeted at 10.3 on PowerPC and 10.4 on Intel. The Debug configuration is set up for 10.3 on the native arch, so it may have to be changed when developing directly on an Intel machine.";
+			comments = "The Release configuration is set up to build a universal binary targeted at 10.3 on PowerPC and 10.4 on Intel.";
 			name = AquaLess;
 			sourceTree = "<group>";
 		};
@@ -676,7 +676,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
-				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
 			};
 			name = Debug;
 		};
@@ -690,7 +689,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
-				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
 				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
 				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
 			};
