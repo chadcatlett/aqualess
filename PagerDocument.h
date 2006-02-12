@@ -2,7 +2,7 @@
 // PagerDocument.h
 //
 // AquaLess - a less-compatible text pager for Mac OS X
-// Copyright (c) 2003 Christoph Pfisterer
+// Copyright (c) 2003-2006 Christoph Pfisterer
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -36,6 +36,7 @@
   NSMutableData *data;
   NSTextStorage *storage;
   NSArray *applicableFormats;
+  Class currentFormat;
   InputParser *parser;
 }
 
@@ -69,6 +70,8 @@
 - (void)detectFormats;
 - (Class)currentFormat;
 - (void)setCurrentFormat:(Class)format;
+
+- (void)reparse;
 
 @end
 

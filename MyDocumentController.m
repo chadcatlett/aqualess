@@ -2,7 +2,7 @@
 // MyDocumentController.m
 //
 // AquaLess - a less-compatible text pager for Mac OS X
-// Copyright (c) 2003-2005 Christoph Pfisterer
+// Copyright (c) 2003-2006 Christoph Pfisterer
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -233,11 +233,37 @@
 
 - (IBAction)applyPrefs:(id)sender
 {
+    //NSFont *testFont;
+    //testFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] dataForKey:@"normalTextFont"]];
+    //NSLog(@"testFont after save: %@, %.1f", [testFont displayName], [testFont pointSize]);
+    
+    // save the new values
     [[NSUserDefaultsController sharedUserDefaultsController] save:sender];
     
+    // MAJOR WORKAROUND: Apparently NSUserDefaultsController doesn't write the values through to
+    //  the NSUserDefaults object immediately. It does write them through later on, though. But to
+    //  change all open windows, we need the new values in NSUserDefaults NOW, so we have to do that
+    //  manually. This is a major PITA.
+    NSEnumerator *enumerator = [[[NSUserDefaultsController sharedUserDefaultsController] initialValues] keyEnumerator];
+    NSString *key;
+    while ((key = [enumerator nextObject])) {
+        [[NSUserDefaults standardUserDefaults] setObject:[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:key]
+                                                  forKey:key];
+    }
+    
+    //testFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] dataForKey:@"normalTextFont"]];
+    //NSLog(@"testFont after save: %@, %.1f", [testFont displayName], [testFont pointSize]);
+    
+    // rebuild cached objects
     reinitFonts();
     
-    // TODO: notify open windows
+    // notify open windows
+    enumerator = [[self documents] objectEnumerator];
+    PagerDocument *doc;
+    while ((doc = [enumerator nextObject])) {
+        [doc reparse];
+        // TODO: also notify windows of the new size unit
+    }
 }
 
 @end

@@ -24,8 +24,6 @@
 #import "FontHelper.h"
 
 
-static NSDictionary *styles[6] = { nil, nil, nil, nil, nil, nil };
-
 @implementation SmartTextInputParser
 
 + (int)priority
@@ -46,6 +44,8 @@ static NSDictionary *styles[6] = { nil, nil, nil, nil, nil, nil };
 - (void)parseData:(NSData *)data fromOffset:(unsigned)startOffset toOffset:(unsigned)endOffset
 {
     // init style table
+    NSDictionary *styles[6];
+    styles[0] = nil;
     styles[1] = fontHelperAttr(FontStylePlain);
     styles[2] = fontHelperAttr(FontStyleBold);
     styles[3] = fontHelperAttr(FontStyleUnderline);

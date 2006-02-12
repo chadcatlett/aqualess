@@ -2,7 +2,7 @@
 // PagerDocument.m
 //
 // AquaLess - a less-compatible text pager for Mac OS X
-// Copyright (c) 2003 Christoph Pfisterer
+// Copyright (c) 2003-2006 Christoph Pfisterer
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -62,6 +62,7 @@ NSString *StatusChangedNotification = @"Pager Status Changed Notification";
     }
 
     applicableFormats = nil;
+    currentFormat = nil;
     parser = nil;
 
   }
@@ -138,6 +139,7 @@ NSString *StatusChangedNotification = @"Pager Status Changed Notification";
   if (applicableFormats != nil) {
     [applicableFormats release];
     applicableFormats = nil;
+    currentFormat = nil;
   }
 
   // start reading the file
@@ -333,35 +335,40 @@ NSString *StatusChangedNotification = @"Pager Status Changed Notification";
 
 - (Class)currentFormat
 {
-  if (parser != nil)
-    return [parser class];
-  return nil;
+  return currentFormat;
 }
 
 - (void)setCurrentFormat:(Class)format
 {
-  // kill old parser if present
-  if (parser != nil) {
-    if ([parser class] == format)
-      return;  // no change
-    [parser release];
-    parser = nil;
-  }
+    if (currentFormat == format)
+        return;  // no change
+    
+    currentFormat = format;
+    [self reparse];
+}
 
-  // empty text storage before starting over
-  [storage beginEditing];
-  [[storage mutableString] setString:@""];
-  [storage endEditing];
-
-  // create new parser if format exists
-  if (format != nil) {
-    parser = [[format alloc] initWithDocument:self];
-    // NOTE: the creation automatically invokes the parser on the present data
-  }
-
-  // update status line and format menu
-  [[NSNotificationCenter defaultCenter] postNotificationName:StatusChangedNotification
-                                                      object:self];
+- (void)reparse
+{
+    // kill old parser if present
+    if (parser != nil) {
+        [parser release];
+        parser = nil;
+    }
+    
+    // empty text storage before starting over
+    [storage beginEditing];
+    [[storage mutableString] setString:@""];
+    [storage endEditing];
+    
+    // create new parser if format exists
+    if (currentFormat != nil) {
+        parser = [[currentFormat alloc] initWithDocument:self];
+        // NOTE: the creation automatically invokes the parser on the present data
+    }
+    
+    // update status line and format menu
+    [[NSNotificationCenter defaultCenter] postNotificationName:StatusChangedNotification
+                                                        object:self];
 }
 
 @end
