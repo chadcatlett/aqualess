@@ -1,51 +1,49 @@
-{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf340
-\readonlydoc1{\fonttbl\f0\fnil\fcharset77 LucidaGrande;\f1\fnil\fcharset77 LucidaGrande-Bold;\f2\fnil\fcharset77 Monaco;
-}
+{\rtf1\ansi\ansicpg1252\cocoartf949\cocoasubrtf330
+{\fonttbl\f0\fnil\fcharset0 LucidaGrande;\f1\fnil\fcharset0 Monaco;}
 {\colortbl;\red255\green255\blue255;}
-\vieww10900\viewh9760\viewkind0
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \f0\fs16 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\qc
 
-\f1\b\fs36 \cf0 AquaLess ReadMe
-\f0\b0\fs28 \
+\b\fs36 \cf0 AquaLess ReadMe
+\b0\fs28 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\fs28 \cf0 AquaLess is a text pager for Mac OS\'caX. It allows you to browse plain text files and \'d0 more importantly \'d0 text output from Unix command line tools. AquaLess is a Cocoa replacement for the \'d2less\'d3 command, which is constrained to the terminal window. AquaLess opens a separate window for each text, so you can keep working in the terminal while you read.\
+\fs28 \cf0 AquaLess is a text pager for Mac OS\'a0X. It allows you to browse plain text files and \'96 more importantly \'96 text output from Unix command line tools. AquaLess is a Cocoa replacement for the \'93less\'94 command, which is constrained to the terminal window. AquaLess opens a separate window for each text, so you can keep working in the terminal while you read.\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f1\b\fs28 \cf0 Installation Instructions\
+\b\fs28 \cf0 Installation Instructions\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f0\b0 \cf0 Copy the AquaLess application to a convenient location on your hard disk, e.g. the \'d2Applications\'d3 folder.\
-\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
-
-\fs16 \cf0 \
-\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
-
-\fs28 \cf0 The first time you run AquaLess, it will offer to install the \'d2aless\'d3 command line tool in a system directory. This makes it available in Terminal without further configuration, but requires an administrator password.\
+\b0 \cf0 Copy the AquaLess application to a convenient location on your hard disk, e.g. the \'93Applications\'94 folder.\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f1\b\fs28 \cf0 Basic Usage\
+\fs28 \cf0 The first time you run AquaLess, it will offer to install the \'93aless\'94 command line tool in a system directory. This makes it available in Terminal without further configuration, but requires an administrator password.\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f0\b0 \cf0 It is possible to open files of any kind through the \'d2File\'d3 menu, but the recommended way to work with AquaLess is from the command line. You can use the \'d2aless\'d3 command in the same basic way as the \'d2less\'d3 command. You can specify one or several files to display:\
+\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\b\fs28 \cf0 Basic Usage\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\b0 \cf0 It is possible to open files of any kind through the \'93File\'94 menu, but the recommended way to work with AquaLess is from the command line. You can use the \'93aless\'94 command in the same basic way as the \'93less\'94 command. You can specify one or several files to display:\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\li400\ql\qnatural
 
-\f2\fs22 \cf0 aless README NEWS\
+\f1\fs22 \cf0 aless README NEWS\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \f0\fs16 \cf0 \
@@ -57,78 +55,78 @@
 \fs16 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\li400\ql\qnatural
 
-\f2\fs22 \cf0 ps ax | aless\
+\f1\fs22 \cf0 ps ax | aless\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \f0\fs28 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f1\b \cf0 Automatic Usage\
+\b \cf0 Automatic Usage\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f0\b0 \cf0 Some commands (e.g. \'d2man\'d3) automatically invoke a text pager for their output. These commands get the name of the pager to use from the environment variable PAGER. To use AquaLess with these programs, set the variable to \'d2aless\'d3, like this:\
+\b0 \cf0 Some commands (e.g. \'93man\'94) automatically invoke a text pager for their output. These commands get the name of the pager to use from the environment variable PAGER. To use AquaLess with these programs, set the variable to \'93aless\'94, like this:\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
 \pard\tx3780\li400\ql\qnatural
 
-\f2\fs22 \cf0 setenv PAGER aless	
+\f1\fs22 \cf0 setenv PAGER aless	
 \f0\fs24 (for tcsh)
-\f2\fs22 \
+\f1\fs22 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \f0\fs16 \cf0 \
 \pard\tx3780\li400\ql\qnatural
 
-\f2\fs22 \cf0 export PAGER=aless	
+\f1\fs22 \cf0 export PAGER=aless	
 \f0\fs24 (for bash)
-\f2\fs22 \
+\f1\fs22 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \f0\fs16 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\fs28 \cf0 If you are used to typing \'d2less\'d3, you can re-define that using an alias:\
+\fs28 \cf0 If you are used to typing \'93less\'94, you can re-define that using an alias:\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
 \pard\tx3780\li400\ql\qnatural
 
-\f2\fs22 \cf0 alias less aless	
+\f1\fs22 \cf0 alias less aless	
 \f0\fs24 (for tcsh)
-\f2\fs22 \
+\f1\fs22 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \f0\fs16 \cf0 \
 \pard\tx3780\li400\ql\qnatural
 
-\f2\fs22 \cf0 alias less=aless	
+\f1\fs22 \cf0 alias less=aless	
 \f0\fs24 (for bash)
-\f2\fs22 \
+\f1\fs22 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \f0\fs16 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\fs28 \cf0 All of these customizations can be made permanent by adding the command to the shell\'d5s startup file. For tcsh, use .cshrc in your home directory, for bash .bashrc is appropriate.\
+\fs28 \cf0 All of these customizations can be made permanent by adding the command to the shell\'92s startup file. For tcsh, use .cshrc in your home directory, for bash .bashrc is appropriate.\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f1\b\fs28 \cf0 About Formats\
+\b\fs28 \cf0 About Formats\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f0\b0 \cf0 AquaLess supports the special codes used by \'d2man\'d3 to encode bold and underlined words in plain text. This processing can be disabled using the popup menu at the bottom of each text window. The popup also allows you to select a \'d2Hex dump\'d3\'camode, which is more suitable for binary (i.e. non-text) files.\
+\b0 \cf0 AquaLess supports the special codes used by \'93man\'94 to encode bold and underlined words in plain text. This processing can be disabled using the popup menu at the bottom of each text window. The popup also allows you to select a \'93Hex dump\'94\'a0mode, which is more suitable for binary (i.e. non-text) files.\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f1\b\fs28 \cf0 Keyboard Commands\
+\b\fs28 \cf0 Keyboard Commands\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f0\b0 \cf0 AquaLess supports a range of keyboard commands in an effort to be less-compatible. You can use them with or without the Control key pressed. The commands are:\
+\b0 \cf0 AquaLess supports a range of keyboard commands in an effort to be less-compatible. You can use them with or without the Control key pressed. The commands are:\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
@@ -168,7 +166,7 @@
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 \cf0 F (i.e. Shift-f)\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\li400\ql\qnatural
-\cf0 Scrolls to the end of the file and keeps scrolling down as data is appended to the file. This emulates the behavior of \'d2tail -f\'d3. To cancel automatic scrolling, use any other scrolling command to move away from the end of the file.\
+\cf0 Scrolls to the end of the file and keeps scrolling down as data is appended to the file. This emulates the behavior of \'93tail -f\'94. To cancel automatic scrolling, use any other scrolling command to move away from the end of the file.\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 \cf0 q\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\li400\ql\qnatural
@@ -194,21 +192,30 @@
 \fs16 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f1\b\fs28 \cf0 Getting the Source
-\f0\b0 \
-AquaLess is \'d2Open Source\'d3 software. In addition to the program, you also get the full source code, so you can modify it to your liking. In fact, the license used for AquaLess effectively requires everyone who distributes the program to distribute the source along with it. If you didn\'d5t get the source together with the binary, you can download it from <{\field{\*\fldinst{HYPERLINK "http://aqualess.sourceforge.net/"}}{\fldrslt http://aqualess.sourceforge.net/}}>.\
+\b\fs28 \cf0 Getting the Source
+\b0 \
+AquaLess is \'93Open Source\'94 software. In addition to the program, you also get the full source code, so you can modify it to your liking. In fact, the license used for AquaLess effectively requires everyone who distributes the program to distribute the source along with it. If you didn\'92t get the source together with the binary, you can download it from <{\field{\*\fldinst{HYPERLINK "http://aqualess.sourceforge.net/"}}{\fldrslt http://aqualess.sourceforge.net/}}>.\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f1\b\fs28 \cf0 Version History
-\f0\b0 \
-Version 1.5:\
+\b\fs28 \cf0 Version History
+\b0 \
+Version 1.6:\
 \pard\tx400\tx1440\tx2880\tx4320\tx5760\tx7200\li400\fi-340\ql\qnatural
-\cf0 \'a5	Font and text color can be set through the Preferences window\
-\'a5	Built as a Universal Binary\
-\'a5	Now requires Mac OS X 10.3.9 or higher\
+\cf0 \'95	Bug fix for files sent from the \'93aless\'94 tool being truncated\
+\'95	Now requires Mac OS X 10.4 or higher\
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs16 \cf0 \
+\pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
+
+\fs28 \cf0 Version 1.5:\
+\pard\tx400\tx1440\tx2880\tx4320\tx5760\tx7200\li400\fi-340\ql\qnatural
+\cf0 \'95	Font and text color can be set through the Preferences window\
+\'95	Built as a Universal Binary\
+\'95	Now requires Mac OS X 10.3.9 or higher\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
@@ -216,9 +223,9 @@ Version 1.5:\
 
 \fs28 \cf0 Version 1.4:\
 \pard\tx400\tx1440\tx2880\tx4320\tx5760\tx7200\li400\fi-340\ql\qnatural
-\cf0 \'a5	Fixed a memory leak (thanks to Dave Dribin)\
-\'a5	Added a title option to the command line tool\
-\'a5	Fixed command line tool installation to be robust against prebinding and friends\
+\cf0 \'95	Fixed a memory leak (thanks to Dave Dribin)\
+\'95	Added a title option to the command line tool\
+\'95	Fixed command line tool installation to be robust against prebinding and friends\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
@@ -226,8 +233,8 @@ Version 1.5:\
 
 \fs28 \cf0 Version 1.3:\
 \pard\tx400\tx1440\tx2880\tx4320\tx5760\tx7200\li400\fi-340\ql\qnatural
-\cf0 \'a5	Added searching for regular expressions\
-\'a5	Added parsing of certain terminal escape sequences\
+\cf0 \'95	Added searching for regular expressions\
+\'95	Added parsing of certain terminal escape sequences\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
@@ -235,8 +242,8 @@ Version 1.5:\
 
 \fs28 \cf0 Version 1.2:\
 \pard\tx400\tx1440\tx2880\tx4320\tx5760\tx7200\li400\fi-340\ql\qnatural
-\cf0 \'a5	Fixed window resizes\
-\'a5	Fixed Find sheet reappearing bug\
+\cf0 \'95	Fixed window resizes\
+\'95	Fixed Find sheet reappearing bug\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
@@ -244,12 +251,12 @@ Version 1.5:\
 
 \fs28 \cf0 Version 1.1:\
 \pard\tx400\tx1440\tx2880\tx4320\tx5760\tx7200\li400\fi-340\ql\qnatural
-\cf0 \'a5	Added search function; only plain text matches for now\
-\'a5	Fixed display of certain man pages\
-\'a5	File loading is now fully incremental and always watches for newly appended data (part one of \'d2tail -f\'d3 emulation)\
-\'a5	Added an auto-scrolling mode (part two of \'d2tail -f\'d3 emulation)\
-\'a5	Added help (-h) and version (-v) switches to the command line tool\
-\'a5	Other minor changes\
+\cf0 \'95	Added search function; only plain text matches for now\
+\'95	Fixed display of certain man pages\
+\'95	File loading is now fully incremental and always watches for newly appended data (part one of \'93tail -f\'94 emulation)\
+\'95	Added an auto-scrolling mode (part two of \'93tail -f\'94 emulation)\
+\'95	Added help (-h) and version (-v) switches to the command line tool\
+\'95	Other minor changes\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
 \fs16 \cf0 \
@@ -262,10 +269,10 @@ First public release.\
 \fs16 \cf0 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f1\b\fs28 \cf0 Credits\
+\b\fs28 \cf0 Credits\
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\ql\qnatural
 
-\f0\b0 \cf0 AquaLess was written by Christoph Pfisterer <chrisp@users.sourceforge.net>. Regular Expression matching uses the AGRegex class by Aram Greenman and the PCRE library by Philip Hazel. The application icon is based on original art by Diana Todd, used with permission.\
+\b0 \cf0 AquaLess was written by Christoph Pfisterer <chrisp@users.sourceforge.net>. Regular Expression matching uses the AGRegex class by Aram Greenman and the PCRE library by Philip Hazel. The application icon is based on original art by Diana Todd, used with permission.\
 \
 \pard\tx1440\tx2880\tx4320\tx5760\tx7200\qc
 \cf0 Have fun!

@@ -64,33 +64,6 @@
 		9DE658A70930C22400394832 /* FontDisplayNameTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE658A50930C22400394832 /* FontDisplayNameTransformer.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildStyle section */
-		4A9504D0FFE6A4CB11CA0CBA /* Development */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OPTIMIZATION_CFLAGS = "-O0";
-				ZERO_LINK = NO;
-			};
-			name = Development;
-		};
-		4A9504D1FFE6A4CB11CA0CBA /* Deployment */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEPLOYMENT_LOCATION = YES;
-				DEPLOYMENT_POSTPROCESSING = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-/* End PBXBuildStyle section */
-
 /* Begin PBXContainerItemProxy section */
 		9DB8DEE00590C1430039D27C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -219,7 +192,6 @@
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
-			comments = "The Release configuration is set up to build a universal binary targeted at 10.3 on PowerPC and 10.4 on Intel.";
 			name = AquaLess;
 			sourceTree = "<group>";
 		};
@@ -363,20 +335,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = AquaLess_Prefix.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = aless;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost";
-				ZERO_LINK = NO;
-			};
 			dependencies = (
 			);
 			name = aless;
@@ -396,26 +354,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = AquaLess_Prefix.h;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					SUPPORT_UTF8,
-					"POSIX_MALLOC_THRESHOLD=10",
-				);
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "Info-AquaLess.plist";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = AquaLess;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost";
-				WRAPPER_EXTENSION = app;
-			};
 			dependencies = (
 				9DB8DEE10590C1430039D27C /* PBXTargetDependency */,
 			);
@@ -430,15 +368,11 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 9DF9940B0885745D00ABA917 /* Build configuration list for PBXProject "AquaLess" */;
-			buildSettings = {
-			};
-			buildStyles = (
-				4A9504D0FFE6A4CB11CA0CBA /* Development */,
-				4A9504D1FFE6A4CB11CA0CBA /* Deployment */,
-			);
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* AquaLess */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				9DB8DEA60590C1370039D27C /* AquaLess */,
 				9DB8DE980590C11B0039D27C /* aless */,
@@ -675,7 +609,8 @@
 		9DF9940C0885745D00ABA917 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Debug;
 		};
@@ -686,11 +621,8 @@
 					ppc,
 					i386,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
-				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
-				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
-				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
-				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Release;
 		};
