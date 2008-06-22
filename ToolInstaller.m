@@ -61,7 +61,7 @@ void checkAndInstallTool()
     // do the installation
     if (installTool(bundlePath, systemPath) == 0) {
       NSRunInformationalAlertPanel(@"Installation Successful",
-                                   @"The command line tool is now installed. If you have any Terminal windows open, run the \"rehash\" command in each one before using the \"aless\" command.",
+                                   @"The \"aless\" command line tool is now installed.",
                                    @"OK", nil, nil);
     } else {
       NSRunAlertPanel(@"Installation Failed",
