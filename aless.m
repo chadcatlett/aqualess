@@ -2,7 +2,7 @@
 // aless.m
 //
 // AquaLess - a less-compatible text pager for Mac OS X
-// Copyright (c) 2003-2005 Christoph Pfisterer
+// Copyright (c) 2003-2008 Christoph Pfisterer
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -26,7 +26,7 @@
 #define BUFSIZE (8192)
 
 
-const char *version_id = "|aless_version_id|1.5|";
+const char *version_id = "|aless_version_id|1.6|";
 
 const char *progname;
 int exitcode = 0;
@@ -48,8 +48,8 @@ void usage()
 void version()
 {
   fprintf(stderr,
-          "aless 1.5, the AquaLess command line tool\n"
-          "Copyright (c) 2003-2005 Christoph Pfisterer.\n"
+          "aless 1.6, the AquaLess command line tool\n"
+          "Copyright (c) 2003-2008 Christoph Pfisterer.\n"
           "Visit http://aqualess.sourceforge.net/ for more information.\n"
           );
   exitcode = 1;
@@ -59,7 +59,7 @@ void connectToApp()
 {
   int tries;
   for (tries = 0; tries < 10; tries++) {
-    appProxy = [NSConnection rootProxyForConnectionWithRegisteredName:@"AquaLess2"
+    appProxy = [NSConnection rootProxyForConnectionWithRegisteredName:@"AquaLess3"
                                                                  host:nil];
     if (appProxy)
       break;

@@ -2,7 +2,7 @@
 // MyDocumentController.h
 //
 // AquaLess - a less-compatible text pager for Mac OS X
-// Copyright (c) 2003-2006 Christoph Pfisterer
+// Copyright (c) 2003-2008 Christoph Pfisterer
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -35,10 +35,10 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification;
 
-- (oneway void)openFileWithPath:(NSString *)filePath;
+- (void)openFileWithPath:(NSString *)filePath;
 - (int)openPipe;
 - (int)openPipeWithTitle:(NSString *)title;
-- (oneway void)addData:(NSData *)data toPipe:(int)pipeid;
+- (void)addData:(NSData *)data toPipe:(int)pipeid;
 
 - (void)removeDocument:(NSDocument *)document;
 

@@ -2,7 +2,7 @@
 // MyDocumentController.m
 //
 // AquaLess - a less-compatible text pager for Mac OS X
-// Copyright (c) 2003-2006 Christoph Pfisterer
+// Copyright (c) 2003-2008 Christoph Pfisterer
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -86,7 +86,7 @@
     // register server for the command line tool
     NSConnection *conn = [NSConnection defaultConnection];
     [conn setRootObject:self];
-    if ([conn registerName:@"AquaLess2"] == NO) {
+    if ([conn registerName:@"AquaLess3"] == NO) {
         NSRunAlertPanel(@"Server Registration Failed",
                         @"The AquaLess application failed to register its communication port with the system. The command line tool will not be able to contact the application.",
                         @"OK", nil, nil);
@@ -96,7 +96,7 @@
     checkAndInstallTool();
 }
 
-- (oneway void)openFileWithPath:(NSString *)filePath
+- (void)openFileWithPath:(NSString *)filePath
 {
     // bring us to the front
     [NSApp activateIgnoringOtherApps:YES];
@@ -139,7 +139,7 @@
     return pipeId;
 }
 
-- (oneway void)addData:(NSData *)data toPipe:(int)pipeId
+- (void)addData:(NSData *)data toPipe:(int)pipeId
 {
     // find the document by id
     PagerDocument *pipeDoc = [pipes objectForKey:[NSNumber numberWithInt:pipeId]];
