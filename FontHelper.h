@@ -19,14 +19,31 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#define FontStylePlain (1)
-#define FontStyleBold (2)
-#define FontStyleUnderline (3)
-#define FontStyleBoldUnderline (4)
-#define FontStyleInverted (5)
+typedef enum {
+    FontStyleNone = 0x00,
+    FontStyleBold = 0x01,
+    FontStyleFaint = 0x02,
+    FontStyleItalic = 0x04,
+    FontStyleUnderline = 0x08,
+    FontStyleInverted = 0x10,
+} FontStyleBit;
+
+typedef enum {
+    // note that this does not match the order of the colors in ANSICode
+    // so that Default == 0
+    FontColorDefault,
+    FontColorBlack,
+    FontColorRed,
+    FontColorGreen,
+    FontColorYellow,
+    FontColorBlue,
+    FontColorMagenta,
+    FontColorCyan,
+    FontColorWhite,
+    FontColorXTerm,
+} FontColorType;
 
 void reinitFonts();
 
 NSSize fontHelperCellSize();
-NSFont *fontHelperFont(int style);
-NSDictionary *fontHelperAttr(int style);
+NSDictionary *fontHelperAttr(unsigned style);
