@@ -22,7 +22,6 @@
 #import "MyDocumentController.h"
 #import "PagerDocument.h"
 #import "ReadmeWindowController.h"
-#import "ToolInstaller.h"
 #import "FontDisplayNameTransformer.h"
 #import "FontHelper.h"
 
@@ -91,9 +90,6 @@
                         @"The AquaLess application failed to register its communication port with the system. The command line tool will not be able to contact the application.",
                         @"OK", nil, nil);
     }
-    
-    // check for installation of command line tool
-    checkAndInstallTool();
 }
 
 - (void)openFileWithPath:(NSString *)filePath

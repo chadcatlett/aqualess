@@ -25,7 +25,6 @@
 		9DB8DEB20590C1370039D27C /* HexdumpInputParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D028D010413A78700A81664 /* HexdumpInputParser.h */; };
 		9DB8DEB30590C1370039D27C /* RawTextInputParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D4C893B0415118000A81664 /* RawTextInputParser.h */; };
 		9DB8DEB40590C1370039D27C /* ReadmeWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DCE8DB50416511200A81608 /* ReadmeWindowController.h */; };
-		9DB8DEB50590C1370039D27C /* ToolInstaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DC8FEA804191F9400A81608 /* ToolInstaller.h */; };
 		9DB8DEB60590C1370039D27C /* FindPanelController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6B421D042DBD5500F86BBE /* FindPanelController.h */; };
 		9DB8DEB70590C1370039D27C /* AGRegex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DC53C8E045D6C1500C7B3CF /* AGRegex.h */; };
 		9DB8DEB80590C1370039D27C /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DC53C91045D6C1500C7B3CF /* config.h */; };
@@ -51,7 +50,6 @@
 		9DB8DECF0590C1370039D27C /* HexdumpInputParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D028D020413A78700A81664 /* HexdumpInputParser.m */; };
 		9DB8DED00590C1370039D27C /* RawTextInputParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4C893C0415118000A81664 /* RawTextInputParser.m */; };
 		9DB8DED10590C1370039D27C /* ReadmeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCE8DB60416511200A81608 /* ReadmeWindowController.m */; };
-		9DB8DED20590C1370039D27C /* ToolInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC8FEA904191F9400A81608 /* ToolInstaller.m */; };
 		9DB8DED30590C1370039D27C /* FindPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B421E042DBD5500F86BBE /* FindPanelController.m */; };
 		9DB8DED40590C1370039D27C /* AGRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC53C8F045D6C1500C7B3CF /* AGRegex.m */; };
 		9DB8DED50590C1370039D27C /* get.c in Sources */ = {isa = PBXBuildFile; fileRef = 9DC53C92045D6C1500C7B3CF /* get.c */; };
@@ -122,8 +120,6 @@
 		9DC53C95045D6C1500C7B3CF /* pcre.c */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.c; name = pcre.c; path = regex/pcre.c; sourceTree = "<group>"; };
 		9DC53C96045D6C1500C7B3CF /* pcre.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; name = pcre.h; path = regex/pcre.h; sourceTree = "<group>"; };
 		9DC53C97045D6C1500C7B3CF /* study.c */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.c; name = study.c; path = regex/study.c; sourceTree = "<group>"; };
-		9DC8FEA804191F9400A81608 /* ToolInstaller.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = ToolInstaller.h; sourceTree = "<group>"; };
-		9DC8FEA904191F9400A81608 /* ToolInstaller.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = ToolInstaller.m; sourceTree = "<group>"; };
 		9DC8FEAC0419293800A81608 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		9DCE8DB50416511200A81608 /* ReadmeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = ReadmeWindowController.h; sourceTree = "<group>"; };
 		9DCE8DB60416511200A81608 /* ReadmeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = ReadmeWindowController.m; sourceTree = "<group>"; };
@@ -233,8 +229,6 @@
 				9DA64EEB040C00E300A81664 /* aless.m */,
 				9D028CE2040FDF5900A81664 /* FontHelper.m */,
 				9D028CE1040FDF5900A81664 /* FontHelper.h */,
-				9DC8FEA904191F9400A81608 /* ToolInstaller.m */,
-				9DC8FEA804191F9400A81608 /* ToolInstaller.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -311,7 +305,6 @@
 				9DB8DEB20590C1370039D27C /* HexdumpInputParser.h in Headers */,
 				9DB8DEB30590C1370039D27C /* RawTextInputParser.h in Headers */,
 				9DB8DEB40590C1370039D27C /* ReadmeWindowController.h in Headers */,
-				9DB8DEB50590C1370039D27C /* ToolInstaller.h in Headers */,
 				9DB8DEB60590C1370039D27C /* FindPanelController.h in Headers */,
 				9DB8DEB70590C1370039D27C /* AGRegex.h in Headers */,
 				9DB8DEB80590C1370039D27C /* config.h in Headers */,
@@ -435,7 +428,6 @@
 				9DB8DECF0590C1370039D27C /* HexdumpInputParser.m in Sources */,
 				9DB8DED00590C1370039D27C /* RawTextInputParser.m in Sources */,
 				9DB8DED10590C1370039D27C /* ReadmeWindowController.m in Sources */,
-				9DB8DED20590C1370039D27C /* ToolInstaller.m in Sources */,
 				9DB8DED30590C1370039D27C /* FindPanelController.m in Sources */,
 				9DB8DED40590C1370039D27C /* AGRegex.m in Sources */,
 				9DB8DED50590C1370039D27C /* get.c in Sources */,
